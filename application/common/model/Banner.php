@@ -26,7 +26,7 @@ class Banner extends BaseModel
     }
 
     /**
-     * 根据主键获取 banner
+     * 根据 id 获取 banner
      * @param $banner_id
      * @return array|false|\PDOStatement|string|\think\Model
      * @throws NotFoundException
@@ -34,7 +34,7 @@ class Banner extends BaseModel
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public static function getBannerByPrimaryKey($banner_id)
+    public static function getBannerById($banner_id)
     {
         // 查询
         $banner = self::with(['bannerItems', 'bannerItems.image'])->find($banner_id);

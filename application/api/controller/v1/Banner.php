@@ -35,7 +35,7 @@ class Banner extends Controller
         }
 
         // 获取
-        $banner = BannerModel::getBannerByPrimaryKey($param['id']);
+        $banner = BannerModel::getBannerById($param['id']);
 
         return $banner;
     }
