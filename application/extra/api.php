@@ -30,6 +30,6 @@ return [
         // 服务器通用错误信息
         'server_common_msg' => 'Unknown Error',
     ],
-    // 内部错误接管开关
+    // 异常接管开关
     'exception_handle_switch' => true,
 ];

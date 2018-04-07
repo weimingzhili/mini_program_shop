@@ -4,7 +4,6 @@ namespace app\common\exception;
 
 use think\Config;
 use think\exception\Handle;
-use think\Log;
 
 /**
  * 异常处理
@@ -51,15 +50,12 @@ class ExceptionHandle extends Handle
             // 加载配置
             $config = Config::get('api');
 
-            // 若错误接管开关生效
+            // 若异常接管开启
             if ($config['exception_handle_switch'])
             {
                 $this->httpCode  = $config['http_code']['server_common_error'];
                 $this->msg       = $config['error_msg']['server_common_msg'];
                 $this->errorCode = $config['error_code']['unknown_error'];
-
-                // 记录日志
-                $this->recordLog($exception);
             } else {
                 // 还原框架默认异常接管
                 return parent::render($exception);
@@ -67,15 +63,5 @@ class ExceptionHandle extends Handle
         }
 
         return json(['msg' => $this->msg, 'errorCode' => $this->errorCode], $this->httpCode);
-    }
-
-    /**
-     * 记录日志
-     * @access public
-     * @param \Exception $e
-     */
-    protected function recordLog(\Exception $e)
-    {
-        Log::record($e->getMessage(), 'error');
     }
 }
