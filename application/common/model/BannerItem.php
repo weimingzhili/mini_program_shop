@@ -1,6 +1,6 @@
 <?php
 
-namespace app\api\model;
+namespace app\common\model;
 
 /**
  * banner_item 表模型

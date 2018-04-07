@@ -2,7 +2,7 @@
 
 namespace app\api\controller\v1;
 
-use app\api\model\Banner as BannerModel;
+use app\common\model\Banner as BannerModel;
 use app\common\exception\ParameterException;
 use think\Controller;
 use think\Request;
