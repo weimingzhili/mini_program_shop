@@ -49,3 +49,29 @@ create table topic (
   delete_time int unsigned default null comment '删除标识',
   primary key (id)
 ) comment '专题表';
+
+-- 专题商品关联表
+create table topic_goods (
+  topic_id int unsigned not null comment '专题id',
+  goods_id int unsigned not null comment '商品id',
+  create_time int unsigned not null comment '创建时间',
+  delete_time int unsigned default null comment '删除标识',
+  primary key (topic_id, goods_id)
+) comment '专题商品关联表';
+
+-- 商品表
+create table goods (
+  id int unsigned not null auto_increment,
+  goods_title varchar(128) not null comment '标题',
+  category_id int not null comment '分类id',
+  goods_price decimal(10,2) not null comment '价格',
+  goods_stock int not null default 0 comment '库存',
+  main_image_id int default null comment '主图id',
+  main_image_url varchar(255) default '' comment '主图路径',
+  main_image_source tinyint not null default 1 comment '主图来源，1：本地，2：外网',
+  goods_summary varchar(255) not null default '' comment '摘要',
+  create_time int unsigned not null comment '创建时间',
+  update_time int unsigned default null comment '更新时间',
+  delete_time int unsigned default null comment '删除标识',
+  primary key (id)
+) comment '商品表';
