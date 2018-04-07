@@ -6,7 +6,7 @@ CREATE TABLE banner (
   banner_name VARCHAR(60) NOT NULL COMMENT '名称',
   banner_description VARCHAR(255) NOT NULL DEFAULT '' COMMENT '描述',
   create_time INT UNSIGNED NOT NULL COMMENT '创建时间',
-  update_time INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '更新时间',
+  update_time INT UNSIGNED default null COMMENT '更新时间',
   delete_time INT UNSIGNED DEFAULT NULL COMMENT '删除标识',
   PRIMARY KEY (id)
 ) COMMENT 'banner表';
@@ -19,7 +19,7 @@ CREATE TABLE banner_item (
   key_word varchar(100) NOT NULL COMMENT '执行关键字，根据不同的type含义不同',
   type TINYINT UNSIGNED NOT NULL DEFAULT 1 COMMENT '跳转类型，0：无导向；1：导向商品；2：导向专题',
   create_time INT UNSIGNED NOT NULL COMMENT '创建时间',
-  update_time INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '更新时间',
+  update_time INT UNSIGNED default null COMMENT '更新时间',
   delete_time INT UNSIGNED DEFAULT NULL COMMENT '删除标识',
   PRIMARY KEY (id),
   KEY (banner_id),
@@ -32,7 +32,7 @@ create table image (
   image_url varchar(255) not null comment '图片路径',
   image_source tinyint unsigned not null default 1 comment '图片来源，1：本地，2：外网',
   create_time INT UNSIGNED NOT NULL COMMENT '创建时间',
-  update_time INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '更新时间',
+  update_time INT UNSIGNED default null COMMENT '更新时间',
   delete_time INT UNSIGNED DEFAULT NULL COMMENT '删除标识',
   primary key (id)
 ) comment '图片表';
