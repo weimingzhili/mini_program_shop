@@ -1,6 +1,7 @@
 <?php
 
 namespace app\common\exception;
+
 use think\Config;
 use Throwable;
 
@@ -8,7 +9,7 @@ use Throwable;
  * 基础异常
  * User: Wei Zeng
  */
-class Base extends \Exception
+class BaseException extends \Exception
 {
     /**
      * HTTP 状态码

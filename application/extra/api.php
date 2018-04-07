@@ -15,13 +15,13 @@ return [
     // 错误状态码
     'error_code' => [
         // 通用性错误
-        'common_error' => 1,
+        'common_error' => 1000,
         // 签名错误
-        'sign_error' => 2,
+        'sign_error' => 2000,
         // 鉴权错误
-        'access_error' => 3,
+        'access_error' => 3000,
         // 未知错误
-        'unknown_error' => 4,
+        'unknown_error' => 4000,
     ],
     // 错误信息
     'error_msg' => [

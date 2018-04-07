@@ -42,14 +42,14 @@ class ExceptionHandle extends Handle
     public function render(\Exception $exception)
     {
         // 若属于基础错误
-        if ($exception instanceof Base)
+        if ($exception instanceof BaseException)
         {
             $this->httpCode  = $exception->httpCode;
             $this->msg       = $exception->msg;
             $this->errorCode = $exception->errorCode;
         } else {
             // 加载配置
-            $config =  Config::get('api');
+            $config = Config::get('api');
 
             // 若错误接管开关生效
             if ($config['exception_handle_switch'])
