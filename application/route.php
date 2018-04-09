@@ -12,5 +12,7 @@
 use think\Route;
 
 // banner
-Route::resource(':version/banners', 'api/:version.Banner');
-// Route::get(':version/banner', 'api/:version.Banner/read');
+Route::resource(':version/banners', 'api/:version.Banner', ['only' => ['read']]);
+
+// 专题
+Route::resource(':version/topics', 'api/:version.Topic', ['only' => ['index']]);
