@@ -20,8 +20,10 @@ return [
         'sign_error' => 2000,
         // 鉴权错误
         'access_error' => 3000,
+        // 资源不存在
+        'not_found' => 4000,
         // 未知错误
-        'unknown_error' => 4000,
+        'unknown_error' => 5000,
     ],
     // 错误信息
     'error_msg' => [
