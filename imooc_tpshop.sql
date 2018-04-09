@@ -44,11 +44,22 @@ create table topic (
   topic_description varchar(255) default '' comment '专题描述',
   topic_image_id int unsigned not null comment '配图',
   top_image_id int unsigned not null comment '头图',
+  list_order int unsigned not null default 0 comment '排序标志',
   create_time int unsigned not null comment '创建时间',
   update_time int unsigned default null comment '更新时间',
   delete_time int unsigned default null comment '删除标识',
   primary key (id)
 ) comment '专题表';
+
+-- 专题图片关联表
+create table topic_image (
+  topic_id int unsigned not null comment '专题id',
+  image_id int unsigned not null comment '图片id',
+  image_type tinyint unsigned not null default 1 comment '图片类型，1：首页配图，2：详情头图',
+  create_time int unsigned not null comment '创建时间',
+  delete_time int unsigned default null comment '删除标识',
+  primary key (topic_id, image_id)
+) comment '专题图片关联表';
 
 -- 专题商品关联表
 create table topic_goods (
