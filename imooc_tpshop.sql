@@ -42,8 +42,6 @@ create table topic (
   id int unsigned not null auto_increment,
   topic_name varchar(60) not null comment '名称',
   topic_description varchar(255) default '' comment '专题描述',
-  topic_image_id int unsigned not null comment '配图',
-  top_image_id int unsigned not null comment '头图',
   list_order int unsigned not null default 0 comment '排序标志',
   create_time int unsigned not null comment '创建时间',
   update_time int unsigned default null comment '更新时间',
