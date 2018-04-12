@@ -15,17 +15,17 @@ class Banner extends Controller
 {
     /**
      * 获取 bannerItem
-     * @url    /banner/:id    访问url
-     * @http   Get            访问方式
-     * @access public
-     * @param  \think\Request $request Request实例
+     * @url   /banners/:id            访问url
+     * @http  Get                     访问方式
+     * @param \think\Request $request Request实例
      * @throws \Exception
      * @return array|false|\PDOStatement|string|\think\Model
      */
     public function read(Request $request)
     {
         // 获取参数
-        $param = $request->param();
+        $param       = [];
+        $param['id'] = $request->param('id');
 
         // 校验参数
         $checkRet = $this->validate($param, 'Banner.read');
