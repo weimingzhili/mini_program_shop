@@ -22,7 +22,7 @@ class Topic extends BaseModel
      */
     public function goods()
     {
-        return $this->belongsToMany(Goods::class, 'topic_goods', 'topic_id');
+        return $this->belongsToMany(Goods::class, TopicGoods::class);
     }
 
     /**
@@ -31,7 +31,7 @@ class Topic extends BaseModel
      */
     public function images()
     {
-        return $this->belongsToMany(Image::class, 'topic_image', 'topic_id');
+        return $this->belongsToMany(Image::class, TopicImage::class);
     }
 
     /**
@@ -45,12 +45,35 @@ class Topic extends BaseModel
         // 查询
         $topics = self::all(function ($query)
         {
-            $query->with(['goods', 'images'])
+            $query->with('images')
                 ->order([
-                    'list_order' => 'desc',
+                    'list_order'  => 'desc',
                     'create_time' => 'desc',
                 ])
                 ->limit(3);
+        });
+        if (empty($topics))
+        {
+            throw new NotFoundException('Topics Not Found', Config::get('api.error_code')['not_found']);
+        }
+
+        return $topics;
+    }
+
+    /**
+     * 获取专题（包含产品）
+     * @param int $id 主键
+     * @return null|static
+     * @throws NotFoundException
+     * @throws \think\exception\DbException
+     */
+    public static function getThemeWithProducts($id)
+    {
+        // 查询
+        $topics = self::get(function($query) use ($id)
+        {
+            $query->with(['images', 'goods'])
+                ->where(['id' => $id]);
         });
         if (empty($topics))
         {

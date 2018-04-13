@@ -15,4 +15,4 @@ use think\Route;
 Route::resource(':version/banners', 'api/:version.Banner', ['only' => ['read']]);
 
 // 专题
-Route::resource(':version/topics', 'api/:version.Topic', ['only' => ['index']]);
+Route::resource(':version/topics', 'api/:version.Topic', ['only' => ['index', 'read']]);
