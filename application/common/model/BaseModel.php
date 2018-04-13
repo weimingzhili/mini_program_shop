@@ -20,13 +20,7 @@ class BaseModel extends Model
      */
     protected $autoWriteTimestamp = true;
 
-    /**
-     * image url 获取器
-     * @param string $image_url
-     * @param array $data
-     * @return string
-     */
-    public function getImageUrlAttr($image_url, $data)
+    public function convertImageUrl($image_url, $data)
     {
         return $data['image_source'] == 1 ? Config::get('image.image_prefix') . $image_url : $image_url;
     }
