@@ -77,7 +77,7 @@ create table goods (
   goods_stock int not null default 0 comment '库存',
   main_image_id int default null comment '主图id',
   main_image_url varchar(255) default '' comment '主图路径',
-  main_image_source tinyint not null default 1 comment '主图来源，1：本地，2：外网',
+  image_source tinyint not null default 1 comment '主图来源，1：本地，2：外网',
   goods_summary varchar(255) not null default '' comment '摘要',
   create_time int unsigned not null comment '创建时间',
   update_time int unsigned default null comment '更新时间',
