@@ -85,3 +85,15 @@ create table goods (
   delete_time int unsigned default null comment '删除标识',
   primary key (id)
 ) comment '商品表';
+
+-- 分类表
+create table category (
+  id int unsigned not null auto_increment,
+  category_name varchar(60) not null comment '分类名称',
+  category_image_id int unsigned not null comment '分类图片id',
+  category_description varchar(255) default '' comment '描述',
+  create_time int unsigned not null comment '创建时间',
+  update_time int unsigned default null comment '更新时间',
+  delete_time int unsigned default null comment '删除标识',
+  primary key (id)
+) comment '分类表';
