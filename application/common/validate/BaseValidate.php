@@ -8,7 +8,7 @@ use think\Validate;
  * 基础
  * User: Wei Zeng
  */
-class Base extends Validate
+class BaseValidate extends Validate
 {
     /**
      * 正整数验证规则

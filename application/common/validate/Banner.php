@@ -6,7 +6,7 @@ namespace app\common\validate;
  * Banner
  * User: Wei Zeng
  */
-class Banner extends Base
+class Banner extends BaseValidate
 {
     /**
      * 验证规则

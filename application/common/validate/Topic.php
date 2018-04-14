@@ -6,7 +6,7 @@ namespace app\common\validate;
  * 专题
  * User: Wei Zeng
  */
-class Topic extends Base
+class Topic extends BaseValidate
 {
     /**
      * 验证规则
