@@ -18,6 +18,7 @@ CREATE TABLE banner_item (
   image_id INT UNSIGNED NOT NULL COMMENT 'image表id',
   key_word varchar(100) NOT NULL COMMENT '执行关键字，根据不同的type含义不同',
   type TINYINT UNSIGNED NOT NULL DEFAULT 1 COMMENT '跳转类型，0：无导向；1：导向商品；2：导向专题',
+  list_order int unsigned not null default 0 comment '排序标志',
   create_time INT UNSIGNED NOT NULL COMMENT '创建时间',
   update_time INT UNSIGNED default null COMMENT '更新时间',
   delete_time INT UNSIGNED DEFAULT NULL COMMENT '删除标识',
