@@ -40,10 +40,13 @@ class Goods extends BaseModel
         $goods = self::all(function($query) use ($limit) {
             $query->order(['create_time' => 'desc'])->limit($limit);
         });
-        if (empty($goods))
+        if ($goods->isEmpty())
         {
             throw new NotFoundException('Latest Goods Not Found');
         }
+
+        // 去掉无关字段
+        $goods = $goods->hidden(['goods_summary', 'create_time', 'update_time']);
 
         return $goods;
     }

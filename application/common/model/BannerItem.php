@@ -49,7 +49,7 @@ class BannerItem extends BaseModel
                 ->order(['list_order' => 'desc']);
         });
         // 若 banner item 不存在
-        if (empty($bannerItems))
+        if ($bannerItems->isEmpty())
         {
             throw new NotFoundException('Banner Items Not Found');
         }

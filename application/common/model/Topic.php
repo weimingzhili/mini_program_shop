@@ -52,7 +52,7 @@ class Topic extends BaseModel
                 ])
                 ->limit(3);
         });
-        if (empty($topics))
+        if ($topics->isEmpty())
         {
             throw new NotFoundException('Topics Not Found', Config::get('api.error_code')['not_found']);
         }
