@@ -2,8 +2,8 @@
 
 namespace app\api\controller\v1;
 
-use app\common\model\Banner as BannerModel;
 use app\common\exception\ParameterException;
+use app\common\model\BannerItem;
 use think\Controller;
 use think\Request;
 
@@ -35,7 +35,7 @@ class Banner extends Controller
         }
 
         // 获取
-        $banner = BannerModel::getBannerById($param['id']);
+        $banner = BannerItem::getBannerItemByBannerId($param['id']);
 
         return $banner;
     }
