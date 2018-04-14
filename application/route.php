@@ -12,7 +12,10 @@
 use think\Route;
 
 // banner
-Route::resource(':version/banners', 'api/:version.Banner', ['only' => ['read']]);
+Route::resource(':version/bannerItems', 'api/:version.Banner', ['only' => ['read']]);
 
 // 专题
 Route::resource(':version/topics', 'api/:version.Topic', ['only' => ['index', 'read']]);
+
+// 商品
+Route::resource(':version/goods', 'api/:version.Goods', ['only' => ['index']]);
