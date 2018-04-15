@@ -50,4 +50,28 @@ class Goods extends BaseModel
 
         return $goods;
     }
+
+    /**
+     *  根据分类 id 获取商品
+     * @param int $category_id 分类 id
+     * @return false|static[]
+     * @throws NotFoundException
+     * @throws \think\exception\DbException
+     */
+    public static function getAllGoodsByCategoryId($category_id)
+    {
+        // 查询
+        $goods = self::all(function($query) use ($category_id) {
+            $query->where(['category_id' => $category_id])->order(['list_order' => 'desc']);
+        });
+        if ($goods->isEmpty())
+        {
+            throw new NotFoundException('Category Goods Not Found');
+        }
+
+        // 去掉无关字段
+        $goods = $goods->hidden(['goods_summary', 'create_time', 'update_time']);
+
+        return $goods;
+    }
 }

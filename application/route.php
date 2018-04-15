@@ -19,6 +19,7 @@ Route::resource(':version/topics', 'api/:version.Topic', ['only' => ['index', 'r
 
 // 商品
 Route::resource(':version/goods', 'api/:version.Goods', ['only' => ['index']]);
+Route::get(':version/categoryGoods', 'api/:version.Goods/categoryGoods');
 
 // 分类
 Route::resource(':version/categories', 'api/:version.Category', ['only' => ['index']]);
