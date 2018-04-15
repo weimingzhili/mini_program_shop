@@ -17,7 +17,7 @@ return [
     // 数据库名
     'database'        => 'imooc_tpshop',
     // 用户名
-    'username'        => 'thinkphp',
+    'username'        => 'develop',
     // 密码
     'password'        => '000000',
     // 端口
