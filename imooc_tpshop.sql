@@ -80,6 +80,7 @@ create table goods (
   main_image_url varchar(255) default '' comment '主图路径',
   image_source tinyint not null default 1 comment '主图来源，1：本地，2：外网',
   goods_summary varchar(255) not null default '' comment '摘要',
+  list_order int unsigned not null default 0 comment '排序标志',
   create_time int unsigned not null comment '创建时间',
   update_time int unsigned default null comment '更新时间',
   delete_time int unsigned default null comment '删除标识',
