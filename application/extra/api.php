@@ -9,6 +9,8 @@ return [
     'http_code' => [
         // 客户端通用错误
         'client_common_error' => 400,
+        // 校验错误
+        'unprocessable_entity' => 422,
         // 服务器通用错误
         'server_common_error' => 500,
     ],
