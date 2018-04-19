@@ -2,23 +2,27 @@
 
 namespace app\api\controller\v1;
 
-use think\Controller;
 use app\common\model\Category as CategoryModel;
 
 /**
  * 分类
  * User: Wei Zeng
  */
-class Category extends Controller
+class Category extends BaseController
 {
     /**
      * 列表
-     * @return false|static[]
+     * @url /categories 访问 url
+     * @http get 请求方式
+     * @return \think\response\Json
      * @throws \app\common\exception\NotFoundException
      * @throws \think\exception\DbException
      */
     public function index()
     {
-        return CategoryModel::getAllCategories();
+        // 获取
+        $categories = CategoryModel::getAllCategories();
+
+        return $this->restResponse(['categories' => $categories]);
     }
 }

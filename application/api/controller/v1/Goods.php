@@ -3,22 +3,21 @@
 namespace app\api\controller\v1;
 
 use app\common\exception\ParameterException;
-use think\Controller;
-use think\Request;
 use app\common\model\Goods as GoodsModel;
+use think\Request;
 
 /**
  * 商品
  * User: Wei Zeng
  */
-class Goods extends Controller
+class Goods extends BaseController
 {
     /**
      * 列表
-     * @url /goods
-     * @http get
+     * @url /goods 访问 url
+     * @http get 请求方式
      * @param Request $request Request 实例
-     * @return false|static[]
+     * @return \think\response\Json
      * @throws ParameterException
      * @throws \app\common\exception\NotFoundException
      * @throws \think\exception\DbException
@@ -36,15 +35,17 @@ class Goods extends Controller
             throw new ParameterException($checkRet);
         }
 
-        return GoodsModel::getLatestGoods($param['limit']);
+        $goods = GoodsModel::getLatestGoods($param['limit']);
+
+        return $this->restResponse(['goods' => $goods]);
     }
 
     /**
      * 获取分类商品
-     * @url /categoryGoods
-     * @http get
+     * @url /categoryGoods 访问 url
+     * @http get 请求方式
      * @param Request $request
-     * @return false|static[]
+     * @return \think\response\Json
      * @throws ParameterException
      * @throws \app\common\exception\NotFoundException
      * @throws \think\exception\DbException
@@ -62,6 +63,8 @@ class Goods extends Controller
             throw new ParameterException($checkRet);
         }
 
-        return GoodsModel::getAllGoodsByCategoryId($param['category_id']);
+        $goods = GoodsModel::getAllGoodsByCategoryId($param['category_id']);
+
+        return $this->restResponse(['goods' => $goods]);
     }
 }

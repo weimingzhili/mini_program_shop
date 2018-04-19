@@ -4,22 +4,23 @@ namespace app\api\controller\v1;
 
 use app\common\exception\ParameterException;
 use app\common\model\BannerItem;
-use think\Controller;
 use think\Request;
 
 /**
  * Banner
  * User: Wei Zeng
  */
-class Banner extends Controller
+class Banner extends BaseController
 {
     /**
      * 获取 bannerItem
-     * @url   /banners/:id            访问url
-     * @http  Get                     访问方式
-     * @param \think\Request $request Request实例
-     * @throws \Exception
-     * @return array|false|\PDOStatement|string|\think\Model
+     * @url /banners/:id 访问url
+     * @http Get 访问方式
+     * @param Request $request Request实例
+     * @return \think\response\Json
+     * @throws ParameterException
+     * @throws \app\common\exception\NotFoundException
+     * @throws \think\exception\DbException
      */
     public function read(Request $request)
     {
@@ -37,6 +38,6 @@ class Banner extends Controller
         // 获取
         $banner = BannerItem::getBannerItemByBannerId($param['id']);
 
-        return $banner;
+        return $this->restResponse(['banner' => $banner]);
     }
 }
