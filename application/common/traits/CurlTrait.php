@@ -6,7 +6,7 @@ namespace app\common\traits;
  * Curl
  * User: Wei Zeng
  */
-trait Curl
+trait CurlTrait
 {
     /**
      * 配置
