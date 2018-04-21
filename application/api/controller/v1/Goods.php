@@ -72,10 +72,11 @@ class Goods extends BaseController
      * 获取商品详情
      * @url /goods/:id 请求 url
      * @http get 请求方式
-     * @param Request $request Request 实例
+     * @param Request $request
      * @return \think\response\Json
      * @throws ParameterException
      * @throws \app\common\exception\NotFoundException
+     * @throws \think\exception\DbException
      */
     public function read(Request $request)
     {
