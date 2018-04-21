@@ -18,8 +18,14 @@ Route::resource(':version/bannerItems', 'api/:version.Banner', ['only' => ['read
 Route::resource(':version/topics', 'api/:version.Topic', ['only' => ['index', 'read']]);
 
 // 商品
-Route::resource(':version/goods', 'api/:version.Goods', ['only' => ['index']]);
-Route::get(':version/categoryGoods', 'api/:version.Goods/categoryGoods');
+Route::group(':version/goods', function() {
+    // 最近商品
+    Route::get('/latestGoods', 'api/:version.Goods/latestGoods');
+    // 分类商品
+    Route::get('/categoryGoods', 'api/:version.Goods/categoryGoods');
+    // 商品详情
+    Route::get('/:id', 'api/:version.Goods/read');
+});
 
 // 分类
 Route::resource(':version/categories', 'api/:version.Category', ['only' => ['index']]);

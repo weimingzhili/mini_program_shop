@@ -14,7 +14,8 @@ class Goods extends BaseValidate
      */
     protected $rule = [
         // table field
-        'category_id' => 'positiveInteger',
+        'id' => 'require|positiveInteger',
+        'category_id' => 'require|positiveInteger',
 
         // other field
         'limit' => 'positiveInteger|elt:50',
@@ -29,5 +30,7 @@ class Goods extends BaseValidate
         'index' => ['limit'],
         // 分类商品
         'categoryGoods' => ['category_id'],
+        // 获取商品详情
+        'goodsDetails' => ['id'],
     ];
 }

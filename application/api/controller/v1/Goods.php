@@ -13,7 +13,7 @@ use think\Request;
 class Goods extends BaseController
 {
     /**
-     * 列表
+     * 最新商品
      * @url /goods 访问 url
      * @http get 请求方式
      * @param Request $request Request 实例
@@ -22,7 +22,7 @@ class Goods extends BaseController
      * @throws \app\common\exception\NotFoundException
      * @throws \think\exception\DbException
      */
-    public function index(Request $request)
+    public function latestGoods(Request $request)
     {
         // 获取参数
         $param          = [];
@@ -64,6 +64,33 @@ class Goods extends BaseController
         }
 
         $goods = GoodsModel::getAllGoodsByCategoryId($param['category_id']);
+
+        return $this->restResponse(['goods' => $goods]);
+    }
+
+    /**
+     * 获取商品详情
+     * @url /goods/:id 请求 url
+     * @http get 请求方式
+     * @param Request $request Request 实例
+     * @return \think\response\Json
+     * @throws ParameterException
+     * @throws \app\common\exception\NotFoundException
+     */
+    public function read(Request $request)
+    {
+        // 获取参数
+        $param       = [];
+        $param['id'] = $request->param('id');
+
+        // 校验参数
+        $checkRet = $this->validate($param, 'Goods.goodsDetails');
+        if ($checkRet !== true)
+        {
+            throw new ParameterException($checkRet);
+        }
+
+        $goods = GoodsModel::getGoodsDetailById($param['id']);
 
         return $this->restResponse(['goods' => $goods]);
     }
