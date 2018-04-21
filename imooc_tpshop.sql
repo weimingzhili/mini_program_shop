@@ -99,3 +99,14 @@ create table category (
   delete_time int unsigned default null comment '删除标识',
   primary key (id)
 ) comment '分类表';
+
+-- 用户表
+create table user (
+  id int unsigned not null auto_increment,
+  openid varchar(30) not null comment '小程序openid',
+  nickname varchar(60) not null default '' comment '昵称',
+  create_time int unsigned not null comment '创建时间',
+  update_time int unsigned default null comment '更新时间',
+  delete_time int unsigned default null comment '删除标识',
+  primary key (id)
+) comment '用户表';
