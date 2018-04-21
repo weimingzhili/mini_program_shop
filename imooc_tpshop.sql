@@ -87,6 +87,18 @@ create table goods (
   primary key (id)
 ) comment '商品表';
 
+-- 商品图片表
+create table goods_image (
+  id int unsigned not null auto_increment,
+  goods_id int unsigned not null comment '商品id',
+  image_id int unsigned not null comment '图片id',
+  list_order int unsigned not null default 0 comment '排序标志',
+  create_time int unsigned not null comment '创建时间',
+  update_time int unsigned default null comment '更新时间',
+  delete_time int unsigned default null comment '删除标识',
+  primary key (id)
+) comment '商品图片表';
+
 -- 分类表
 create table category (
   id int unsigned not null auto_increment,
