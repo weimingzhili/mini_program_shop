@@ -23,3 +23,6 @@ Route::get(':version/categoryGoods', 'api/:version.Goods/categoryGoods');
 
 // 分类
 Route::resource(':version/categories', 'api/:version.Category', ['only' => ['index']]);
+
+// token
+Route::post(':version/token/users', 'api/:version.Token/create');
