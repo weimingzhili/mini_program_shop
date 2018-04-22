@@ -62,6 +62,9 @@ class ExceptionHandle extends Handle
             }
         }
 
-        return $this->restResponse(['data' => new \stdClass()], $this->message, $this->httpCode);
+        return $this->restResponse(
+            ['data' => new \stdClass()], $this->state,
+            $this->message, $this->httpCode
+        );
     }
 }

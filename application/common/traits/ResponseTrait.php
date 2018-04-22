@@ -14,18 +14,19 @@ trait ResponseTrait
     /**
      * RESTful Api 响应
      * @param mixed $data 数据
+     * @param int $state 响应状态码
      * @param string $message 消息提示
      * @param int $httpCode http 状态码
      * @param array $header header 设置
      * @return \think\response\Json
      */
-    public function restResponse($data, $message = '', $httpCode = 200, array $header = [])
+    public function restResponse($data, $state = 0, $message = '', $httpCode = 200, array $header = [])
     {
         // 合并
         $message = !empty($message) ? $message : Config::get('api.response_message')['common_success'];
 
         return Response::create(
-            ['message' => $message, 'data' => $data],
+            ['state' => $state, 'message' => $message, 'data' => $data],
             'json', $httpCode, $header
         );
     }
