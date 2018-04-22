@@ -3,40 +3,37 @@
 namespace app\common\exception;
 
 use think\Config;
+use think\Exception;
 use Throwable;
 
 /**
  * 基础异常
  * User: Wei Zeng
  */
-class BaseException extends \Exception
+class BaseException extends Exception
 {
     /**
      * HTTP 状态码
-     * @access public
      * @var int
      */
     public $httpCode;
 
     /**
-     * 提示信息
-     * @access public
+     * 响应消息
      * @var string
      */
-    public $msg;
+    public $message;
 
     /**
-     * 错误状态码
-     * @access public
+     * 响应状态码
      * @var int
      */
-    public $errorCode;
+    public $state;
 
     /**
      * 初始化
-     * @access public
      * @param string $message 错误信息
-     * @param int $code 错误状态码
+     * @param int $code 响应状态码
      * @param Throwable|null $previous
      */
     public function __construct($message = "", $code = 0, Throwable $previous = null)
@@ -47,7 +44,7 @@ class BaseException extends \Exception
         // 加载配置
         $config          = Config::get('api');
         $this->httpCode  = $config['http_code']['client_common_error'];
-        $this->msg       = $message ? : $config['error_msg']['client_common_msg'];
-        $this->errorCode = $code ? : $config['error_code']['common_error'];
+        $this->message   = !empty($message) ? $message : $config['response_message']['client_common_error'];
+        $this->state     = !empty($code) ? $code : $config['response_code']['client_common_error'];
     }
 }

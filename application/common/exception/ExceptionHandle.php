@@ -2,6 +2,7 @@
 
 namespace app\common\exception;
 
+use app\common\traits\ResponseTrait;
 use think\Config;
 use think\exception\Handle;
 
@@ -11,26 +12,25 @@ use think\exception\Handle;
  */
 class ExceptionHandle extends Handle
 {
+    use ResponseTrait;
+
     /**
      * HTTP 状态码
-     * @access protected
      * @var int
      */
     protected $httpCode;
 
     /**
-     * 提示信息
-     * @access protected
+     * 响应消息
      * @var string
      */
-    protected $msg;
+    protected $message;
 
     /**
-     * 错误状态码
-     * @access protected
+     * 响应状态码
      * @var int
      */
-    protected $errorCode;
+    protected $state;
 
     /**
      * 异常接管
@@ -43,9 +43,9 @@ class ExceptionHandle extends Handle
         // 若属于基础错误
         if ($exception instanceof BaseException)
         {
-            $this->httpCode  = $exception->httpCode;
-            $this->msg       = $exception->msg;
-            $this->errorCode = $exception->errorCode;
+            $this->httpCode = $exception->httpCode;
+            $this->message  = $exception->message;
+            $this->state    = $exception->state;
         } else {
             // 加载配置
             $config = Config::get('api');
@@ -54,14 +54,14 @@ class ExceptionHandle extends Handle
             if ($config['exception_handle_switch'])
             {
                 $this->httpCode  = $config['http_code']['server_common_error'];
-                $this->msg       = $config['error_msg']['server_common_msg'];
-                $this->errorCode = $config['error_code']['unknown_error'];
+                $this->message       = $config['response_message']['server_common_error'];
+                $this->state = $config['response_code']['server_common_error'];
             } else {
                 // 还原框架默认异常接管
                 return parent::render($exception);
             }
         }
 
-        return json(['msg' => $this->msg, 'errorCode' => $this->errorCode], $this->httpCode);
+        return $this->restResponse(['data' => new \stdClass()], $this->message, $this->httpCode);
     }
 }
