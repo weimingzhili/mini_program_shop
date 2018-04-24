@@ -134,3 +134,24 @@ create table user (
   delete_time int unsigned default null comment '删除标识',
   primary key (id)
 ) comment '用户表';
+
+-- 收货地址表
+create table shipping_address (
+  id int unsigned not null auto_increment,
+  user_id int unsigned not null comment '用户id',
+  consignee_name varchar(60) not null comment '收货人姓名',
+  consignee_phone varchar(15) not null comment '收货人手机',
+  province_name varchar(60) not null comment '省名称',
+  province_code varchar(10) not null comment '省编码',
+  city_name varchar(60) not null comment '市名称',
+  city_code varchar(10) not null comment '市编码',
+  area_name varchar(60) not null comment '区名称',
+  area_code varchar(10) not null comment '区编码',
+  street_name varchar(60) not null default '' comment '街道名称',
+  street_code varchar(10) not null default '' comment '街道编码',
+  detailed_address varchar(255) not null comment '详细地址',
+  create_time int unsigned not null comment '创建时间',
+  update_time int unsigned default null comment '更新时间',
+  delete_time int unsigned default null comment '删除标识',
+  primary key (id)
+) comment '收货地址表';
