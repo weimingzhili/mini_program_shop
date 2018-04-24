@@ -32,3 +32,12 @@ Route::resource(':version/categories', 'api/:version.Category', ['only' => ['ind
 
 // token
 Route::post(':version/token/users', 'api/:version.Token/create');
+
+// 收货地址
+Route::group(':version/shippingAddresses', function()
+{
+    // 创建
+    Route::post('/', 'api/:version.ShippingAddress/create');
+    // 更新
+    Route::put('/', 'api/:version.ShippingAddress/update');
+});

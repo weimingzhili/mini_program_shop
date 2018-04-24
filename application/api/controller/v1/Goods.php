@@ -93,6 +93,6 @@ class Goods extends BaseController
 
         $goods = GoodsModel::getGoodsDetailById($param['id']);
 
-        return $this->restResponse(['goods' => $goods]);
+        return $this->restResponse($goods);
     }
 }

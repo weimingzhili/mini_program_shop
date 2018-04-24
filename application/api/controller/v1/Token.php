@@ -3,7 +3,7 @@
 namespace app\api\controller\v1;
 
 use app\common\exception\ParameterException;
-use app\common\service\Token as TokenService;
+use app\common\service\TokenService;
 use app\common\traits\ToolTrait;
 use think\Request;
 

@@ -23,6 +23,7 @@ trait ResponseTrait
     public function restResponse($data, $state = 0, $message = '', $httpCode = 200, array $header = [])
     {
         // 合并
+        $data = !empty($data) ? $data : new \stdClass();
         $message = !empty($message) ? $message : Config::get('api.response_message')['common_success'];
 
         return Response::create(
