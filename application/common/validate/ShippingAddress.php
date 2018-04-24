@@ -16,7 +16,7 @@ class ShippingAddress extends BaseValidate
         // table field
         'id' => 'require|positiveInteger',
         'consignee_name' => 'require|max:60',
-        'consignee_phone' => 'require|max:15',
+        'consignee_phone' => 'require|mobile',
         'province_name' => 'require|max:60',
         'province_code' => 'require|max:10',
         'city_name' => 'require|max:60',
@@ -43,7 +43,7 @@ class ShippingAddress extends BaseValidate
         'update' => [
             'id',
             'consignee_name' => 'max:60',
-            'consignee_phone' => 'max:15',
+            'consignee_phone' => 'mobile',
             'province_name' => 'max:60',
             'province_code' => 'max:10',
             'city_name' => 'max:60',
