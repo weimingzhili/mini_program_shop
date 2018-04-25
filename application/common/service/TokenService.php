@@ -50,7 +50,7 @@ class TokenService extends BaseService
         $cachedRet = Cache::set($token, [
             'weChatSession' => $result,
             'user_id' => $user->id,
-            'scope' => 16,
+            'scope' => Config::get('scope.role')['user'],
         ], Config::get('cache.token_expires_in'));
         if (!$cachedRet)
         {
@@ -65,7 +65,6 @@ class TokenService extends BaseService
      *
      * @param string $key 缓存键名
      * @return mixed
-     * @throws NotFoundException
      * @throws TokenException
      */
     public static function getCachedSessionByToken($key = '')
@@ -81,7 +80,7 @@ class TokenService extends BaseService
         $session = Cache::get($token);
         if (empty($session))
         {
-            throw new NotFoundException('Cached Session Not Found');
+            throw new TokenException();
         }
 
         // 返回所需的信息
@@ -113,7 +112,6 @@ class TokenService extends BaseService
      * 从缓存的 session 获取 user_id
      *
      * @return mixed
-     * @throws NotFoundException
      * @throws TokenException
      */
     public static function getSessionUserId()

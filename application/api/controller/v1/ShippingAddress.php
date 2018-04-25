@@ -4,12 +4,13 @@ namespace app\api\controller\v1;
 
 use app\common\exception\NotFoundException;
 use app\common\exception\ParameterException;
+use app\common\model\ShippingAddress as ShippingAddressModel;
 use app\common\model\User;
+use app\common\service\TokenService;
+use app\common\traits\ScopeTrait;
 use think\Config;
 use think\Exception;
 use think\Request;
-use app\common\service\TokenService;
-use app\common\model\ShippingAddress as ShippingAddressModel;
 
 /**
  * 收货地址
@@ -17,6 +18,17 @@ use app\common\model\ShippingAddress as ShippingAddressModel;
  */
 class ShippingAddress extends BaseController
 {
+    use ScopeTrait;
+
+    /**
+     * 前置操作
+     *
+     * @var array
+     */
+    protected $beforeActionList = [
+        'checkUserScope' => ['only' => ['create', 'update']],
+    ];
+
     /**
      * 创建收货地址
      *

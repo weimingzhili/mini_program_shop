@@ -22,6 +22,8 @@ return [
         'client_common_error' => 400,
         // token 错误
         'token_error' => 401,
+        // 拒绝访问
+        'forbidden' => 403,
         // 资源不存在
         'resource_not_found' => 404,
         // 校验错误
@@ -42,7 +44,7 @@ return [
         // token 错误
         'token_error' => 2000,
         // 鉴权错误
-        'auth_error' => 3000,
+        'forbidden' => 3000,
         // 服务器通用错误
         'server_common_error' => 4000,
     ],
@@ -58,6 +60,8 @@ return [
         'resource_not_found' => 'Resource Not Found',
         // token 错误
         'token_error' => 'Token Invalid',
+        // 拒绝访问
+        'forbidden' => 'Forbidden',
         // 服务器通用错误信息
         'server_common_error' => 'Unknown Error',
     ],
