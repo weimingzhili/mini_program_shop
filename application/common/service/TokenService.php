@@ -2,7 +2,7 @@
 
 namespace app\common\service;
 
-use app\common\exception\NotFoundException;
+use app\common\exception\ForbiddenException;
 use app\common\exception\TokenException;
 use app\common\library\WeChat;
 use app\common\model\User;
@@ -117,5 +117,43 @@ class TokenService extends BaseService
     public static function getSessionUserId()
     {
         return self::getCachedSessionByToken('user_id');
+    }
+
+    /**
+     * 比对是否拥有或多于用户权限
+     *
+     * @return bool
+     * @throws ForbiddenException
+     * @throws TokenException
+     */
+    public static function isUserScope()
+    {
+        // 获取并比对
+        $scope = self::getCachedSessionByToken('scope');
+        if ($scope < Config::get('scope.role')['user'])
+        {
+            throw new ForbiddenException();
+        }
+
+        return true;
+    }
+
+    /**
+     * 比对是否只拥有用户权限
+     *
+     * @return bool
+     * @throws ForbiddenException
+     * @throws TokenException
+     */
+    public static function isOnlyUserScope()
+    {
+        // 获取并比对
+        $scope = self::getCachedSessionByToken('scope');
+        if ($scope == Config::get('scope.role')['user'])
+        {
+            throw new ForbiddenException();
+        }
+
+        return true;
     }
 }

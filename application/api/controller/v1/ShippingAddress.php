@@ -7,7 +7,6 @@ use app\common\exception\ParameterException;
 use app\common\model\ShippingAddress as ShippingAddressModel;
 use app\common\model\User;
 use app\common\service\TokenService;
-use app\common\traits\ScopeTrait;
 use think\Config;
 use think\Exception;
 use think\Request;
@@ -18,8 +17,6 @@ use think\Request;
  */
 class ShippingAddress extends BaseController
 {
-    use ScopeTrait;
-
     /**
      * 前置操作
      *
