@@ -74,7 +74,7 @@ create table goods (
   id int unsigned not null auto_increment,
   goods_title varchar(128) not null comment '标题',
   category_id int not null comment '分类id',
-  goods_price decimal(10,2) not null comment '价格',
+  goods_price int unsigned not null comment '价格',
   goods_stock int not null default 0 comment '库存',
   main_image_id int default null comment '主图id',
   main_image_url varchar(255) default '' comment '主图路径',
@@ -155,3 +155,38 @@ create table shipping_address (
   delete_time int unsigned default null comment '删除标识',
   primary key (id)
 ) comment '收货地址表';
+
+-- 订单表
+create table orders (
+  id int unsigned not null auto_increment,
+  orders_number varchar(20) not null comment '订单号',
+  user_id int unsigned not null comment '用户id',
+  orders_goods_total int unsigned not null comment '商品总数',
+  orders_total_price int unsigned not null comment '订单总价',
+  shipping_address_id int unsigned not null comment '收货地址id',
+  snapshot_consignee_name varchar(60) not null comment '收货人姓名快照',
+  snapshot_consignee_phone varchar(15) not null comment '收货人手机快照',
+  snapshot_shipping_address varchar(255) not null comment '收货地址快照',
+  orders_state int unsigned not null default 1 comment '订单状态，1：未支付，2：已支付，3：已发货，4：已支付但库存不足',
+  payment_time int unsigned default null comment '支付时间',
+  create_time int unsigned not null comment '创建时间',
+  update_time int unsigned default null comment '更新时间',
+  delete_time int unsigned default null comment '删除标识',
+  primary key (id)
+) comment '订单表';
+
+-- 订单快照表
+create table orders_snapshot (
+  id int unsigned not null auto_increment,
+  orders_id int unsigned not null comment '订单id',
+  goods_id int unsigned not null comment '商品id',
+  snapshot_goods_title varchar(128) not null comment '商品标题快照',
+  snapshot_goods_price int unsigned not null comment '商品价格快照',
+  snapshot_image_url varchar(255) default '' comment '商品主图快照',
+  snapshot_goods_quantity int unsigned not null comment '商品数量快照',
+  snapshot_total_price int unsigned not null comment '商品总价快照',
+  create_time int unsigned not null comment '创建时间',
+  update_time int unsigned default null comment '更新时间',
+  delete_time int unsigned default null comment '删除标识',
+  primary key (id)
+) comment '订单快照表';
