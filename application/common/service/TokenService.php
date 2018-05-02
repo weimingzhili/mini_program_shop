@@ -73,7 +73,11 @@ class TokenService extends BaseService
         $token = Request::instance()->header('token');
         if (empty($token))
         {
-            throw new TokenException('Token Could Not Empty');
+            $config = Config::get('api');
+            throw new TokenException(
+                $config['response_message']['token_cannot_be_empty'],
+                $config['response_code']['token_cannot_be_empty']
+            );
         }
 
         // 获取缓存
@@ -149,7 +153,7 @@ class TokenService extends BaseService
     {
         // 获取并比对
         $scope = self::getCachedSessionByToken('scope');
-        if ($scope == Config::get('scope.role')['user'])
+        if ($scope != Config::get('scope.role')['user'])
         {
             throw new ForbiddenException();
         }

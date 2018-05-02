@@ -30,12 +30,12 @@ class Goods extends BaseModel
     }
 
     /**
-     * main_image_url 获取器
+     * 完整的 main_image_url 获取器
      * @param string $value main_image_url
      * @param array $data 所在记录
      * @return string
      */
-    public function getMainImageUrlAttr($value, $data)
+    public function getMainImageFullUrlAttr($value, $data)
     {
         return $this->convertImageUrl($value, $data);
     }

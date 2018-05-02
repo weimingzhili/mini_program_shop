@@ -41,3 +41,6 @@ Route::group(':version/shippingAddresses', function()
     // 更新
     Route::put('/', 'api/:version.ShippingAddress/update');
 });
+
+// 订单
+Route::post(':version/orders', 'api/:version.Orders/create');
