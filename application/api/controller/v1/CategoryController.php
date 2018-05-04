@@ -8,7 +8,7 @@ use app\common\model\Category as CategoryModel;
  * 分类
  * User: Wei Zeng
  */
-class CategoryController extends Controller
+class CategoryController extends Base
 {
     /**
      * 列表

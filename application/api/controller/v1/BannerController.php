@@ -10,7 +10,7 @@ use think\Request;
  * Banner
  * User: Wei Zeng
  */
-class BannerController extends Controller
+class BannerController extends Base
 {
     /**
      * 获取 bannerItem

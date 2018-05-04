@@ -11,7 +11,7 @@ use think\Request;
  * 专题
  * User: Wei Zeng
  */
-class TopicController extends Controller
+class TopicController extends Base
 {
     /**
      * 主题列表

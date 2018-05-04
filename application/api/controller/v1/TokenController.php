@@ -11,7 +11,7 @@ use think\Request;
  * token
  * User: Wei Zeng
  */
-class TokenController extends Controller
+class TokenController extends Base
 {
     use ToolTrait;
 

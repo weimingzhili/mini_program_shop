@@ -10,7 +10,7 @@ use think\Request;
  * 订单
  * User: Wei Zeng
  */
-class OrdersController extends Controller
+class OrdersController extends Base
 {
     /**
      * 前置操作
