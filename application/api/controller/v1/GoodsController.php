@@ -10,7 +10,7 @@ use think\Request;
  * 商品
  * User: Wei Zeng
  */
-class Goods extends BaseController
+class GoodsController extends Controller
 {
     /**
      * 最新商品

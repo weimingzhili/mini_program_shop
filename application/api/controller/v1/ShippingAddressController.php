@@ -15,7 +15,7 @@ use think\Request;
  * 收货地址
  * User: Wei Zeng
  */
-class ShippingAddress extends BaseController
+class ShippingAddressController extends Controller
 {
     /**
      * 前置操作

@@ -10,7 +10,7 @@ use think\Controller;
  * 基类
  * User: Wei Zeng
  */
-class BaseController extends Controller
+class Controller extends Controller
 {
     use ResponseTrait;
 
