@@ -160,4 +160,16 @@ class TokenService extends BaseService
 
         return true;
     }
+
+    /**
+     * 检测用户是否匹配
+     *
+     * @param int $checkedUserId 要检测的id
+     * @return bool
+     * @throws TokenException
+     */
+    public static function checkUserMatches($checkedUserId)
+    {
+        return $checkedUserId == self::getSessionUserId();
+    }
 }

@@ -68,6 +68,12 @@ return [
         'order_shipping_address_owner_error' => 3104,
         // 订单创建失败
         'order_creation_failed' => 3105,
+        // 订单不存在
+        'order_not_found' => 3106,
+        // 订单不匹配
+        'order_does_not_match' => 3107,
+        // 订单已支付
+        'order_paid_error' => 3108,
     ],
     // 响应信息
     'response_message' => [
@@ -106,5 +112,11 @@ return [
         'order_shipping_address_owner_error' => 'Order Shipping Address Owner Error',
         // 订单创建失败
         'order_creation_failed' => 'Order Creation Failed',
+        // 订单不存在
+        'order_not_found' => 'Order Not Found',
+        // 订单不匹配
+        'order_does_not_match' => 'Order Does Not Match',
+        // 订单已支付
+        'order_paid_error' => 'Order Paid',
     ],
 ];

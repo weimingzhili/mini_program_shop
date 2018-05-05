@@ -13,11 +13,11 @@ class Goods extends BaseValidate
      * @var array
      */
     protected $rule = [
-        // table field
+        // table fields
         'id' => 'require|positiveInteger',
         'category_id' => 'require|positiveInteger',
 
-        // other field
+        // other fields
         'limit' => 'positiveInteger|elt:50',
     ];
 

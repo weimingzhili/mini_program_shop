@@ -20,4 +20,15 @@ return [
         // 微信支付
         'wechat_payment' => 1
     ],
+    // 状态
+    'state' => [
+        // 未支付
+        'unpaid' => 1,
+        // 已支付
+        'paid' => 2,
+        // 已发货
+        'shipped' => 3,
+        // 已支付但库存不足
+        'paid_but_stock_shortage' => 4
+    ],
 ];

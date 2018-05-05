@@ -168,6 +168,7 @@ create table orders (
   snapshot_consignee_phone varchar(15) not null comment '收货人手机快照',
   snapshot_shipping_address varchar(255) not null comment '收货地址快照',
   orders_state int unsigned not null default 1 comment '订单状态，1：未支付，2：已支付，3：已发货，4：已支付但库存不足',
+  prepay_id varchar(128) not null default '' comment '预支付交易会话标识',
   payment_time int unsigned default null comment '支付时间',
   create_time int unsigned not null comment '创建时间',
   update_time int unsigned default null comment '更新时间',

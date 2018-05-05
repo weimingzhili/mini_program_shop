@@ -5,9 +5,11 @@ namespace app\common\service;
 use app\common\exception\OrdersException;
 use app\common\model\Goods;
 use app\common\model\Orders;
+use app\common\model\OrdersSnapshot;
 use app\common\model\ShippingAddress;
 use think\Config;
 use think\Db;
+use think\Log;
 
 /**
  * 订单
@@ -134,15 +136,8 @@ class OrdersService extends BaseService
      */
     protected function getGoodsSnapshot($orderGoods, $goods)
     {
-        // 若商品库存量不足
-        if ($goods['goods_stock'] < $orderGoods['quantity'])
-        {
-            $config = Config::get('api');
-            throw new OrdersException(
-                $config['response_message']['order_insufficient_inventory'],
-                $config['response_code']['order_insufficient_inventory']
-            );
-        }
+        // 检测商品库存
+        $this->checkGoodsStock($orderGoods, $goods);
 
         return [
             'goods_id' => $orderGoods['goods_id'],
@@ -152,6 +147,70 @@ class OrdersService extends BaseService
             'snapshot_goods_quantity' => $orderGoods['quantity'],
             'snapshot_total_price' => $orderGoods['quantity'] * $goods['goods_price']
         ];
+    }
+
+    /**
+     * 检测商品库存
+     *
+     * @param $orderGoods
+     * @param $goods
+     * @return bool
+     * @throws OrdersException
+     */
+    public function checkGoodsStock($orderGoods, $goods)
+    {
+        if ($goods['goods_stock'] < $orderGoods['quantity'])
+        {
+            $config = Config::get('api');
+            throw new OrdersException(
+                $config['response_message']['order_insufficient_inventory'],
+                $config['response_code']['order_insufficient_inventory']
+            );
+        }
+
+        return true;
+    }
+
+    /**
+     * 根据订单 id 检测商品库存
+     *
+     * @param $orders_id
+     * @return bool
+     * @throws OrdersException
+     * @throws \think\exception\DbException
+     */
+    public function checkGoodsStockByOrdersId($orders_id)
+    {
+        // 获取订单商品
+        $ordersGoods = OrdersSnapshot::all(function($query) use ($orders_id)
+        {
+            $query->where('orders_id', $orders_id)
+                ->field([
+                    'goods_id',
+                    'snapshot_goods_quantity' => 'quantity'
+                ]);
+        })
+            ->toArray();
+
+        // 获取数据库商品信息
+        $goods = $this->getGoodsByOrders($ordersGoods);
+
+        foreach ($ordersGoods as $key => $value)
+        {
+            // 判断商品是否存在
+            if (empty($goods[$key]))
+            {
+                $config = Config::get('api');
+                throw new OrdersException(
+                    $config['response_message']['order_goods_not_found'],
+                    $config['response_code']['order_goods_not_found']
+                );
+            }
+
+            $this->checkGoodsStock($value, $goods[$key]);
+        }
+
+        return true;
     }
 
     /**
@@ -266,7 +325,7 @@ class OrdersService extends BaseService
             // 回滚
             Db::rollback();
 
-            // TODO
+            Log::write('Unified Order Created Failed: ' . $exception->getMessage());
 
             $config = Config::get('api');
             throw new OrdersException(

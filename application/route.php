@@ -44,3 +44,12 @@ Route::group(':version/shippingAddresses', function()
 
 // 订单
 Route::post(':version/orders', 'api/:version.Orders/create');
+
+// 支付
+Route::group(':version/pay', function()
+{
+    // 统一下单
+    Route::post('/unifiedOrders', 'api/:version.Pay/unifiedOrder');
+    // 支付通知
+    Route::post('/notifies', 'api/:version.Pay/notifies');
+});
