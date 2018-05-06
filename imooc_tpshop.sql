@@ -183,7 +183,7 @@ create table orders_snapshot (
   goods_id int unsigned not null comment '商品id',
   snapshot_goods_title varchar(128) not null comment '商品标题快照',
   snapshot_goods_price int unsigned not null comment '商品价格快照',
-  snapshot_image_url varchar(255) default '' comment '商品主图快照',
+  snapshot_main_image varchar(255) default '' comment '商品主图快照',
   snapshot_goods_quantity int unsigned not null comment '商品数量快照',
   snapshot_total_price int unsigned not null comment '商品总价快照',
   create_time int unsigned not null comment '创建时间',

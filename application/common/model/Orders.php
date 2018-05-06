@@ -9,6 +9,12 @@ namespace app\common\model;
 class Orders extends BaseModel
 {
     /**
+     * 隐藏字段
+     * @var array
+     */
+    protected $hidden = ['delete_time'];
+
+    /**
      * 与 OrdersSnapShot model 的关联
      *
      * @return \think\model\relation\HasMany

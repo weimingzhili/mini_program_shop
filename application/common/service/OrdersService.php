@@ -82,11 +82,20 @@ class OrdersService extends BaseService
             $orderGoodsIds[] = $data['goods_id'];
         }
 
-        return Goods::all(function($query) use ($orderGoodsIds)
+        // 查询
+        $goods = Goods::all(function($query) use ($orderGoodsIds)
         {
             $query->whereIn('id', $orderGoodsIds)
                 ->field(['id', 'goods_price', 'goods_stock','goods_title', 'main_image_url', 'image_source']);
-        })->toArray();
+        });
+
+        // 追加主图完整路径
+        $goods->each(function($item)
+        {
+            $item->append(['mainImageFullUrl']);
+        });
+
+        return $goods->toArray();
     }
 
     /**
@@ -143,7 +152,7 @@ class OrdersService extends BaseService
             'goods_id' => $orderGoods['goods_id'],
             'snapshot_goods_title' => $goods['goods_title'],
             'snapshot_goods_price' => $goods['goods_price'],
-            'snapshot_image_url' => $goods['main_image_url'],
+            'snapshot_main_image' => $goods['mainImageFullUrl'],
             'snapshot_goods_quantity' => $orderGoods['quantity'],
             'snapshot_total_price' => $orderGoods['quantity'] * $goods['goods_price']
         ];
