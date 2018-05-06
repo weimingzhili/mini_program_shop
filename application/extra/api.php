@@ -43,8 +43,8 @@ return [
         'parameter_error' => 1001,
         // 资源不存在
         'resource_not_found' => 1002,
-        // token 错误
-        'token_error' => 1100,
+        // token 通用错误
+        'token_common_error' => 1100,
         // token 不能为空
         'token_cannot_be_empty' => 1101,
         // 鉴权错误
