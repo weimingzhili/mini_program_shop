@@ -49,6 +49,8 @@ Route::group(':version/orders', function()
     Route::post('/', 'api/:version.Orders/create');
     // 订单列表
     Route::get('/', 'api/:version.Orders/index');
+    // 详情
+    Route::get('/:id', 'api/:version.Orders/read');
 });
 
 // 支付

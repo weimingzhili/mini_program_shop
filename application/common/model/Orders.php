@@ -12,7 +12,7 @@ class Orders extends BaseModel
      * 隐藏字段
      * @var array
      */
-    protected $hidden = ['delete_time'];
+    protected $hidden = ['update_time', 'delete_time'];
 
     /**
      * 与 OrdersSnapShot model 的关联
@@ -43,5 +43,20 @@ class Orders extends BaseModel
             ->order(['create_time' => 'desc'])
             ->field(['id', 'orders_number', 'orders_goods_total', 'orders_total_price', 'orders_state', 'create_time'])
             ->paginate($pageSize, true, ['page' => $page]);
+    }
+
+    /**
+     * 根据订单 id 获取订单详情
+     *
+     * @param int $id 订单id
+     * @return Orders|null
+     * @throws \think\exception\DbException
+     */
+    public static function getOrderById($id)
+    {
+        return self::get(function($query) use ($id)
+        {
+            $query->with('ordersSnapshots')->where(['id' => $id]);
+        });
     }
 }

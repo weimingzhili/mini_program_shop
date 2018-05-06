@@ -1,6 +1,7 @@
 <?php
 
 namespace app\api\controller\v1;
+use app\common\exception\OrdersException;
 use app\common\exception\ParameterException;
 use app\common\model\Orders;
 use app\common\service\OrdersService;
@@ -21,6 +22,7 @@ class OrdersController extends Base
      */
     protected $beforeActionList = [
         'checkOnlyUserScope' => ['only' => ['create', 'index']],
+        'checkUserScope' => ['only' => ['read']],
     ];
 
     /**
@@ -99,5 +101,43 @@ class OrdersController extends Base
         }
 
         return $this->restResponse($result);
+    }
+
+    /**
+     * 详情
+     *
+     * @url /orders/:id 访问 url
+     * @http get 请求方式
+     * @param Request $request
+     * @return \think\response\Json
+     * @throws OrdersException
+     * @throws ParameterException
+     * @throws \think\exception\DbException
+     */
+    public function read(Request $request)
+    {
+        // 获取参数
+        $param = [];
+        $param['id'] = $request->param('id');
+
+        // 校验参数
+        $checkRet = $this->validate($param, 'Orders.read');
+        if ($checkRet !== true)
+        {
+            throw new ParameterException($checkRet);
+        }
+
+        // 获取
+        $order = Orders::getOrderById($param['id']);
+        if (empty($order))
+        {
+            $apiConfig = Config::get('api');
+            throw new OrdersException(
+                $apiConfig['response_message']['order_not_found'],
+                $apiConfig['response_code']['order_not_found']
+            );
+        }
+
+        return $this->restResponse($order);
     }
 }

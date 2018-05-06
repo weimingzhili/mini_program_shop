@@ -14,6 +14,7 @@ class Orders extends BaseValidate
      */
     protected $rule = [
         // table fields
+        'id' => 'require|positiveInteger',
         'shipping_address_id' => 'require|positiveInteger',
 
         // other fields
@@ -41,6 +42,8 @@ class Orders extends BaseValidate
         'create' => ['orders', 'shipping_address_id'],
         // 列表
         'index' => ['page', 'pageSize'],
+        // 详情
+        'read' => ['id'],
     ];
 
     /**
