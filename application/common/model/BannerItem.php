@@ -40,12 +40,10 @@ class BannerItem extends BaseModel
     public static function getBannerItemByBannerId($banner_id)
     {
         // 查询
-        $bannerItems = self::all(function($query) use ($banner_id) {
+        return self::all(function($query) use ($banner_id) {
             $query->with(['banner', 'image'])
                 ->where(['banner_id' => $banner_id])
                 ->order(['list_order' => 'desc']);
         });
-
-        return $bannerItems;
     }
 }
