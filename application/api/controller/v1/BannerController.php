@@ -2,6 +2,7 @@
 
 namespace app\api\controller\v1;
 
+use app\common\exception\NotFoundException;
 use app\common\exception\ParameterException;
 use app\common\model\BannerItem;
 use think\Request;
@@ -14,12 +15,13 @@ class BannerController extends Base
 {
     /**
      * 获取 bannerItem
+     *
      * @url /banners/:id 访问url
      * @http Get 访问方式
-     * @param Request $request Request实例
+     * @param Request $request
      * @return \think\response\Json
+     * @throws NotFoundException
      * @throws ParameterException
-     * @throws \app\common\exception\NotFoundException
      * @throws \think\exception\DbException
      */
     public function read(Request $request)
@@ -36,8 +38,12 @@ class BannerController extends Base
         }
 
         // 获取
-        $banner = BannerItem::getBannerItemByBannerId($param['id']);
+        $bannerItems = BannerItem::getBannerItemByBannerId($param['id']);
+        if ($bannerItems->isEmpty())
+        {
+            throw new NotFoundException('Banner Items Not Found');
+        }
 
-        return $this->restResponse(['banner' => $banner]);
+        return $this->restResponse($bannerItems);
     }
 }

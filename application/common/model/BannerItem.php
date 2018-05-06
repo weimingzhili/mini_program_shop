@@ -37,7 +37,6 @@ class BannerItem extends BaseModel
      * 根据 banner id 获取 banner item
      * @param int $banner_id banner id
      * @return false|static[]
-     * @throws NotFoundException
      * @throws \think\exception\DbException
      */
     public static function getBannerItemByBannerId($banner_id)
@@ -48,11 +47,6 @@ class BannerItem extends BaseModel
                 ->where(['banner_id' => $banner_id])
                 ->order(['list_order' => 'desc']);
         });
-        // 若 banner item 不存在
-        if ($bannerItems->isEmpty())
-        {
-            throw new NotFoundException('Banner Items Not Found');
-        }
 
         return $bannerItems;
     }
