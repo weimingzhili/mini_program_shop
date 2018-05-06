@@ -13,25 +13,42 @@ class Orders extends BaseValidate
      * @var array
      */
     protected $rule = [
-        'orders' => 'checkOrder',
+        // table fields
         'shipping_address_id' => 'require|positiveInteger',
+
+        // other fields
+        'orders' => 'checkOrder',
+        'page' => 'positiveInteger',
+        'pageSize' => 'positiveInteger',
     ];
 
     /**
-     * 场景
-     * @var
+     * 错误信息
+     *
+     * @var array
      */
-    protected $scene = [
-        // 下单
-        'create' => ['orders', 'shipping_address_id'],
-    ];
-
     protected $message = [
         // 下单
         'orders.checkOrder' => 'Orders Data Invalid',
     ];
 
-    // 校验订单数据
+    /**
+     * 场景
+     * @var array
+     */
+    protected $scene = [
+        // 下单
+        'create' => ['orders', 'shipping_address_id'],
+        // 列表
+        'index' => ['page', 'pageSize'],
+    ];
+
+    /**
+     * 校验订单数据
+     *
+     * @param mixed $value 订单数据
+     * @return bool
+     */
     protected function checkOrder($value)
     {
         // 校验整体

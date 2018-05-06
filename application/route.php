@@ -43,7 +43,13 @@ Route::group(':version/shippingAddresses', function()
 });
 
 // 订单
-Route::post(':version/orders', 'api/:version.Orders/create');
+Route::group(':version/orders', function()
+{
+    // 创建订单
+    Route::post('/', 'api/:version.Orders/create');
+    // 订单列表
+    Route::get('/', 'api/:version.Orders/index');
+});
 
 // 支付
 Route::group(':version/pay', function()

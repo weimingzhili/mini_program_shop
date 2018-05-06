@@ -23,4 +23,25 @@ class Orders extends BaseModel
     {
         return $this->hasMany(OrdersSnapshot::class, 'orders_id', $this->pk);
     }
+
+    /**
+     * 根据用户 id 获取分页列表
+     *
+     * @param int $user_id 用户 id
+     * @param int $page 页数
+     * @param int $pageSize 每页记录数
+     * @return \think\Paginator
+     * @throws \think\exception\DbException
+     */
+    public static function getPaginateByUserId($user_id, $page, $pageSize)
+    {
+        return self::with(['ordersSnapshots' => function($query)
+        {
+            $query->field(['orders_id', 'snapshot_goods_title', 'snapshot_goods_price', 'snapshot_main_image', 'snapshot_goods_quantity', 'snapshot_total_price']);
+        }])
+            ->where(['user_id' => $user_id])
+            ->order(['create_time' => 'desc'])
+            ->field(['id', 'orders_number', 'orders_goods_total', 'orders_total_price', 'orders_state', 'create_time'])
+            ->paginate($pageSize, true, ['page' => $page]);
+    }
 }

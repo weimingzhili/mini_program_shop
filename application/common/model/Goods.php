@@ -37,7 +37,7 @@ class Goods extends BaseModel
      */
     public function getMainImageFullUrlAttr($value, $data)
     {
-        return $this->convertImageUrl($value, $data);
+        return $this->convertImageUrl($data['main_image_url'], $data);
     }
 
     /**
