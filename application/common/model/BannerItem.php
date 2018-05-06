@@ -2,8 +2,6 @@
 
 namespace app\common\model;
 
-use app\common\exception\NotFoundException;
-
 /**
  * banner_item 表模型
  */
@@ -13,7 +11,7 @@ class BannerItem extends BaseModel
      * 隐藏字段
      * @var array
      */
-    protected $hidden = ['banner', 'delete_time'];
+    protected $hidden = ['banner', 'update_time', 'delete_time'];
 
     /**
      * 与 Image 模型的反向关联
