@@ -15,6 +15,7 @@ class TopicController extends Base
 {
     /**
      * 主题列表
+     *
      * @url /topics 访问 url
      * @http Get 访问方式
      * @return \think\response\Json
@@ -31,6 +32,7 @@ class TopicController extends Base
 
     /**
      * 获取专题详情
+     *
      * @url /topics/:id 访问 url
      * @http Get 访问方式
      * @param Request $request Request 实例

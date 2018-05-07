@@ -13,6 +13,7 @@ trait ResponseTrait
 {
     /**
      * RESTful Api 响应
+     *
      * @param mixed $data 数据
      * @param int $state 响应状态码
      * @param string $message 消息提示

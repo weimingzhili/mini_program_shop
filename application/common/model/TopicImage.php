@@ -12,6 +12,7 @@ class TopicImage extends Pivot
 {
     /**
      * 主键
+     *
      * @var array
      */
     protected $pk = ['topic_id', 'image_id', 'create_time'];

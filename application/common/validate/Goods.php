@@ -10,6 +10,7 @@ class Goods extends BaseValidate
 {
     /**
      * 验证规则
+     *
      * @var array
      */
     protected $rule = [
@@ -23,7 +24,8 @@ class Goods extends BaseValidate
 
     /**
      * 场景
-     * @var
+     *
+     * @var array
      */
     protected $scene = [
         // 列表

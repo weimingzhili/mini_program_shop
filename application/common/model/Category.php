@@ -12,12 +12,14 @@ class Category extends BaseModel
 {
     /**
      * 隐藏字段
+     *
      * @var array
      */
     protected $hidden = ['image_id', 'delete_time'];
 
     /**
      * 与 Image 模型的反向关联
+     *
      * @return \think\model\relation\BelongsTo
      */
     public function image()
@@ -27,6 +29,7 @@ class Category extends BaseModel
 
     /**
      * 获取所有的分类
+     *
      * @return false|static[]
      * @throws NotFoundException
      * @throws \think\exception\DbException

@@ -10,6 +10,7 @@ class Orders extends BaseModel
 {
     /**
      * 隐藏字段
+     *
      * @var array
      */
     protected $hidden = ['update_time', 'delete_time'];

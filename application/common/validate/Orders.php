@@ -10,6 +10,7 @@ class Orders extends BaseValidate
 {
     /**
      * 验证规则
+     *
      * @var array
      */
     protected $rule = [
@@ -35,6 +36,7 @@ class Orders extends BaseValidate
 
     /**
      * 场景
+     *
      * @var array
      */
     protected $scene = [

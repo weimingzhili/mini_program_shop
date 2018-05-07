@@ -12,6 +12,7 @@ class CategoryController extends Base
 {
     /**
      * 列表
+     *
      * @url /categories 访问 url
      * @http get 请求方式
      * @return \think\response\Json

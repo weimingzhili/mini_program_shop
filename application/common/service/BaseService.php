@@ -16,6 +16,7 @@ class BaseService
 
     /**
      * 生成 token
+     *
      * @return string
      */
     public static function generateToken()

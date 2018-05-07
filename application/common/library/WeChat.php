@@ -15,24 +15,28 @@ class WeChat
 
     /**
      * 小程序 appID
+     *
      * @var string
      */
     protected $appId;
 
     /**
      * 小程序 AppSecret
+     *
      * @var string
      */
     protected $appSecret;
 
     /**
      * 小程序接口域名
+     *
      * @var string
      */
     protected $api_host;
 
     /**
      * 小程序接口地址
+     *
      * @var array
      */
     protected $api_urls;
@@ -52,6 +56,7 @@ class WeChat
 
     /**
      * 根据 code 获取 session 数据
+     *
      * @param string $code 小程序 js code
      * @return mixed
      */

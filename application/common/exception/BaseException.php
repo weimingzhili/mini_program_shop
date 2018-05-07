@@ -14,24 +14,28 @@ class BaseException extends Exception
 {
     /**
      * HTTP 状态码
+     *
      * @var int
      */
     public $httpCode;
 
     /**
      * 响应消息
+     *
      * @var string
      */
     public $message;
 
     /**
      * 响应状态码
+     *
      * @var int
      */
     public $state;
 
     /**
      * 初始化
+     *
      * @param string $message 错误信息
      * @param int $code 响应状态码
      * @param Throwable|null $previous

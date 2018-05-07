@@ -10,6 +10,7 @@ trait ToolTrait
 {
     /**
      * 随机字符串生成器
+     *
      * @param int $length 长度
      * @param bool $includeSpecial 是否包含特殊字符
      * @return string
@@ -33,6 +34,7 @@ trait ToolTrait
 
     /**
      * emoji 过滤器
+     *
      * @param string $string 要过滤的字符串
      * @return string
      */

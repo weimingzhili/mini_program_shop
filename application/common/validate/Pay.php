@@ -10,6 +10,7 @@ class Pay extends BaseValidate
 {
     /**
      * 验证规则
+     *
      * @var array
      */
     protected $rule = [
@@ -19,7 +20,8 @@ class Pay extends BaseValidate
 
     /**
      * 场景
-     * @var
+     *
+     * @var array
      */
     protected $scene = [
         // 统一下单

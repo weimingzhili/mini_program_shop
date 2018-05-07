@@ -14,6 +14,7 @@ class GoodsController extends Base
 {
     /**
      * 最新商品
+     *
      * @url /goods 访问 url
      * @http get 请求方式
      * @param Request $request Request 实例
@@ -42,6 +43,7 @@ class GoodsController extends Base
 
     /**
      * 获取分类商品
+     *
      * @url /categoryGoods 访问 url
      * @http get 请求方式
      * @param Request $request
@@ -70,6 +72,7 @@ class GoodsController extends Base
 
     /**
      * 获取商品详情
+     *
      * @url /goods/:id 请求 url
      * @http get 请求方式
      * @param Request $request

@@ -12,6 +12,7 @@ class BaseValidate extends Validate
 {
     /**
      * 正整数验证规则
+     *
      * @param mixed $value 验证参数
      * @param string $rule 验证规则
      * @param array $data 所有的验证参数

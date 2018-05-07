@@ -9,12 +9,14 @@ class BannerItem extends BaseModel
 {
     /**
      * 隐藏字段
+     *
      * @var array
      */
     protected $hidden = ['banner', 'update_time', 'delete_time'];
 
     /**
      * 与 Image 模型的反向关联
+     *
      * @return \think\model\relation\BelongsTo
      */
     public function image()
@@ -24,6 +26,7 @@ class BannerItem extends BaseModel
 
     /**
      * 与 Banner 模型的反向关联
+     *
      * @return \think\model\relation\BelongsTo
      */
     public function banner()
@@ -33,6 +36,7 @@ class BannerItem extends BaseModel
 
     /**
      * 根据 banner id 获取 banner item
+     *
      * @param int $banner_id banner id
      * @return false|static[]
      * @throws \think\exception\DbException

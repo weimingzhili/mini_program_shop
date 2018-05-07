@@ -12,6 +12,7 @@ class Goods extends BaseModel
 {
     /**
      * 隐藏字段
+     *
      * @var array
      */
     protected $hidden = [
@@ -19,11 +20,21 @@ class Goods extends BaseModel
         'update_time', 'delete_time', 'pivot'
     ];
 
+    /**
+     * 与 GoodsImage model 的关联
+     *
+     * @return \think\model\relation\HasMany
+     */
     public function goodsImages()
     {
         return $this->hasMany(GoodsImage::class, 'goods_id', $this->pk);
     }
 
+    /**
+     * 与 GoodsAttributes model 的关联
+     *
+     * @return \think\model\relation\HasMany
+     */
     public function goodsAttributes()
     {
         return $this->hasMany(GoodsAttribute::class, 'goods_id', $this->pk);
@@ -31,6 +42,7 @@ class Goods extends BaseModel
 
     /**
      * 完整的 main_image_url 获取器
+     *
      * @param string $value main_image_url
      * @param array $data 所在记录
      * @return string
@@ -42,6 +54,7 @@ class Goods extends BaseModel
 
     /**
      * 获取最近的商品
+     *
      * @param int $limit 商品数量
      * @return false|static[]
      * @throws NotFoundException
@@ -72,6 +85,7 @@ class Goods extends BaseModel
 
     /**
      *  根据分类 id 获取商品
+     *
      * @param int $category_id 分类 id
      * @return false|static[]
      * @throws NotFoundException
@@ -96,6 +110,7 @@ class Goods extends BaseModel
 
     /**
      * 根据 id 获取商品详情
+     *
      * @param int $id 商品 id
      * @return null|static
      * @throws NotFoundException

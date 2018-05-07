@@ -16,6 +16,7 @@ class BaseModel extends Model
 
     /**
      * 开启时间戳自动写入
+     *
      * @var bool
      */
     protected $autoWriteTimestamp = true;

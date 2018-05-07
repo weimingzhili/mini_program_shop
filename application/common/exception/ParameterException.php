@@ -13,6 +13,7 @@ class ParameterException extends BaseException
 {
     /**
      * 初始化
+     *
      * @param string $message 错误信息
      * @param int $code 响应状态码
      * @param Throwable|null $previous

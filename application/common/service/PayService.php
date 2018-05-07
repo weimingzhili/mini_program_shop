@@ -83,6 +83,7 @@ class PayService extends BaseService
      * @param int $orders_id 订单id
      * @return bool
      * @throws OrdersException
+     * @throws TokenException
      * @throws \think\exception\DbException
      */
     protected function checkOrder($orders_id)

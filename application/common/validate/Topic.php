@@ -10,6 +10,7 @@ class Topic extends BaseValidate
 {
     /**
      * 验证规则
+     *
      * @var array
      */
     protected $rule = [
@@ -18,6 +19,7 @@ class Topic extends BaseValidate
 
     /**
      * 场景
+     *
      * @var array
      */
     protected $scene = [

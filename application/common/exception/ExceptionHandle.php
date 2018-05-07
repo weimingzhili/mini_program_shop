@@ -16,24 +16,28 @@ class ExceptionHandle extends Handle
 
     /**
      * HTTP 状态码
+     *
      * @var int
      */
     protected $httpCode;
 
     /**
      * 响应消息
+     *
      * @var string
      */
     protected $message;
 
     /**
      * 响应状态码
+     *
      * @var int
      */
     protected $state;
 
     /**
      * 异常接管
+     *
      * @access public
      * @param \Exception $exception
      * @return \think\Response|\think\response\Json

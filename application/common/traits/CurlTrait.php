@@ -10,16 +10,19 @@ trait CurlTrait
 {
     /**
      * 配置
+     *
      * @var array
      */
     protected $options = [
         // 超时时间
         CURLOPT_TIMEOUT        => 30,
+
         // 是否返回结果
         CURLOPT_RETURNTRANSFER => true,
     ];
     /**
      * http get 请求
+     *
      * @param string $url 请求地址
      * @param array $param 请求参数
      * @param string $format 结果格式化，支持json，xml
@@ -61,6 +64,7 @@ trait CurlTrait
     }
     /**
      * http post 请求
+     *
      * @param string $url 请求地址
      * @param array $param 请求参数
      * @param string $format 结果格式化，支持json，xml
@@ -101,8 +105,10 @@ trait CurlTrait
 
         return $result;
     }
+
     /**
      * 转换结果
+     *
      * @param string $result 结果
      * @param string $format 转换格式
      * @return mixed
@@ -120,8 +126,10 @@ trait CurlTrait
 
         return $result;
     }
+
     /**
      * json 转换成数组
+     *
      * @param string $json JSON 数据
      * @return array|bool
      */
@@ -132,8 +140,10 @@ trait CurlTrait
 
         return is_array($result) ? $result : false;
     }
+
     /**
      * xml 转换成数组
+     *
      * @param string $xml XML 数据
      * @return array|bool
      */

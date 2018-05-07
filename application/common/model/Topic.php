@@ -12,12 +12,14 @@ class Topic extends BaseModel
 {
     /**
      * 隐藏字段
+     *
      * @var array
      */
     protected $hidden = ['update_time', 'delete_time'];
 
     /**
      * 定义与 Goods 模型的多对多关联
+     *
      * @return \think\model\relation\BelongsToMany
      */
     public function goods()
@@ -27,6 +29,7 @@ class Topic extends BaseModel
 
     /**
      * 定义与 Image 模型的多对多关联
+     *
      * @return \think\model\relation\BelongsToMany
      */
     public function images()
@@ -36,6 +39,7 @@ class Topic extends BaseModel
 
     /**
      * 获取精选主题
+     *
      * @return false|static[]
      * @throws NotFoundException
      * @throws \think\exception\DbException
@@ -62,6 +66,7 @@ class Topic extends BaseModel
 
     /**
      * 获取专题（包含产品）
+     *
      * @param int $id 主键
      * @return null|static
      * @throws NotFoundException

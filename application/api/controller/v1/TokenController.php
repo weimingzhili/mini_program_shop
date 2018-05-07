@@ -17,6 +17,7 @@ class TokenController extends Base
 
     /**
      * 生成 token
+     *
      * @url /token/users 访问 url
      * @http get 请求方式
      * @param Request $request Request 实例

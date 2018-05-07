@@ -10,12 +10,14 @@ class Banner extends BaseModel
 {
     /**
      * 隐藏字段
+     *
      * @var array
      */
     protected $hidden = ['delete_time'];
 
     /**
      * 与 BannerItem 模型的关联
+     *
      * @return \think\model\relation\HasMany
      */
     public function bannerItems()

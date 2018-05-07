@@ -10,6 +10,7 @@ class User extends BaseModel
 {
     /**
      * 与 ShippingAddress model 的关联
+     *
      * @return \think\model\relation\HasMany
      */
     public function shippingAddresses()
