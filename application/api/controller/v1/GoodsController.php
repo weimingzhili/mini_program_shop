@@ -37,7 +37,7 @@ class GoodsController extends Base
 
         $goods = GoodsModel::getLatestGoods($param['limit']);
 
-        return $this->restResponse(['goods' => $goods]);
+        return $this->restResponse($goods);
     }
 
     /**
@@ -65,7 +65,7 @@ class GoodsController extends Base
 
         $goods = GoodsModel::getAllGoodsByCategoryId($param['category_id']);
 
-        return $this->restResponse(['goods' => $goods]);
+        return $this->restResponse($goods);
     }
 
     /**
