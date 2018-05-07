@@ -14,7 +14,7 @@ class Topic extends BaseModel
      * 隐藏字段
      * @var array
      */
-    protected $hidden = ['delete_time'];
+    protected $hidden = ['update_time', 'delete_time'];
 
     /**
      * 定义与 Goods 模型的多对多关联

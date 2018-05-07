@@ -26,7 +26,7 @@ class TopicController extends Base
         // 获取
         $topics = TopicModel::getFeaturedTopics();
 
-        return $this->restResponse(['topics' => $topics]);
+        return $this->restResponse($topics);
     }
 
     /**
@@ -55,6 +55,6 @@ class TopicController extends Base
         // 获取
         $topics = TopicModel::getThemeWithProducts($param['id']);
 
-        return $this->restResponse(['topics' => $topics]);
+        return $this->restResponse($topics);
     }
 }
