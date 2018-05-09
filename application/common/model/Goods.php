@@ -133,6 +133,9 @@ class Goods extends BaseModel
             throw new NotFoundException('Goods Detail Not Found');
         }
 
+        // 追加完整主图完整路径
+        $goods->append(['mainImageFullUrl']);
+
         return $goods;
     }
 }
