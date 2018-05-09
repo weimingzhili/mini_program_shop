@@ -85,6 +85,12 @@ class Topic extends BaseModel
             throw new NotFoundException('Topics Not Found', Config::get('api.error_code')['not_found']);
         }
 
+        // 追加完整主图完整路径
+        $topics->goods->each(function($item)
+        {
+            $item->append(['mainImageFullUrl']);
+        });
+
         return $topics;
     }
 }
