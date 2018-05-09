@@ -27,7 +27,7 @@ class GoodsController extends Base
     {
         // 获取参数
         $param          = [];
-        $param['limit'] = $request->param('limit', 10);
+        $param['limit'] = $request->param('limit', 20);
 
         // 校验参数
         $checkRet = $this->validate($param, 'Goods.index');
