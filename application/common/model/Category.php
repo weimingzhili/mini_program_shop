@@ -30,21 +30,14 @@ class Category extends BaseModel
     /**
      * 获取所有的分类
      *
-     * @return false|static[]
-     * @throws NotFoundException
+     * @return Category[]|false
      * @throws \think\exception\DbException
      */
     public static function getAllCategories()
     {
         // 查询
-        $categories = self::all(function($query) {
+        return self::all(function($query) {
             $query->with(['image'])->order(['list_order' => 'desc']);
         });
-        if ($categories->isEmpty())
-        {
-            throw new NotFoundException('All Categories Not Found');
-        }
-
-        return $categories;
     }
 }

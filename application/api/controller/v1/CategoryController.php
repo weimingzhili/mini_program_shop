@@ -2,6 +2,7 @@
 
 namespace app\api\controller\v1;
 
+use app\common\exception\NotFoundException;
 use app\common\model\Category as CategoryModel;
 
 /**
@@ -23,7 +24,11 @@ class CategoryController extends Base
     {
         // 获取
         $categories = CategoryModel::getAllCategories();
+        if ($categories->isEmpty())
+        {
+            throw new NotFoundException('All Categories Not Found');
+        }
 
-        return $this->restResponse(['categories' => $categories]);
+        return $this->restResponse($categories);
     }
 }
