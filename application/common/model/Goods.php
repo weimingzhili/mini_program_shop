@@ -102,6 +102,12 @@ class Goods extends BaseModel
             throw new NotFoundException('Category Goods Not Found');
         }
 
+        // 追加完整主图完整路径
+        $goods->each(function($item)
+        {
+            $item->append(['mainImageFullUrl']);
+        });
+
         // 去掉无关字段
         $goods = $goods->hidden(['goods_summary', 'create_time', 'update_time']);
 
