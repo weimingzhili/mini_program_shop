@@ -28,7 +28,7 @@ class TokenController extends Base
     public function create(Request $request)
     {
         // 获取参数
-        $param         = [];
+        $param = [];
         $param['code'] = $request->param('code');
 
         // 验证
@@ -42,6 +42,32 @@ class TokenController extends Base
         $tokenService = new TokenService();
         $token = $tokenService->getTokenByCode($param['code']);
 
-        return $this->restResponse(['token' => $token]);
+        return $this->restResponse($token);
+    }
+
+    /**
+     * 获取 token 状态
+     *
+     * @param Request $request Request 实例
+     * @return \think\response\Json
+     * @throws ParameterException
+     */
+    public function tokenStates(Request $request)
+    {
+        // 获取参数
+        $param = [];
+        $param['token'] = $request->param('token');
+
+        // 验证
+        $checkRet = $this->validate($param, 'Token.tokenStates');
+        if (!$checkRet)
+        {
+            throw new ParameterException($checkRet);
+        }
+
+        // 检查
+        $state = TokenService::checkToken($param['token']);
+
+        return $this->restResponse(['tokenState' => $state]);
     }
 }

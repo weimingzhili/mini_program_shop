@@ -14,8 +14,11 @@ class Token extends BaseValidate
      * @var array
      */
     protected $rule = [
-        // table field
+        // table fields
         'code' => 'require',
+
+        // other fields
+        'token' => 'require',
     ];
 
     /**
@@ -26,5 +29,7 @@ class Token extends BaseValidate
     protected $scene = [
         // 生成
         'create' => ['code'],
+        // 获取 token 状态
+        'tokenStates' => ['token']
     ];
 }

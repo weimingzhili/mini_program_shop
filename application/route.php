@@ -31,7 +31,13 @@ Route::group(':version/goods', function() {
 Route::resource(':version/categories', 'api/:version.Category', ['only' => ['index']]);
 
 // token
-Route::post(':version/token/users', 'api/:version.Token/create');
+Route::group(':version/token', function()
+{
+    // 生成
+    Route::post('/userTokens', 'api/:version.Token/create');
+    // 获取 token 状态
+    Route::get('/tokenStates', 'api/:version.Token/tokenStates');
+});
 
 // 收货地址
 Route::group(':version/shippingAddresses', function()

@@ -172,4 +172,18 @@ class TokenService extends BaseService
     {
         return $checkedUserId == self::getSessionUserId();
     }
+
+    /**
+     * 检测 token
+     *
+     * @param string $token token
+     * @return bool
+     */
+    public static function checkToken($token)
+    {
+        // 获取 session
+        $session = Cache::get($token);
+
+        return !empty($session) ? true : false;
+    }
 }
