@@ -150,6 +150,7 @@ create table shipping_address (
   street_name varchar(60) not null default '' comment '街道名称',
   street_code varchar(10) not null default '' comment '街道编码',
   detailed_address varchar(255) not null comment '详细地址',
+  address_type tinyint unsigned not null default 0 comment '类型，0：非默认，1：默认',
   create_time int unsigned not null comment '创建时间',
   update_time int unsigned default null comment '更新时间',
   delete_time int unsigned default null comment '删除标识',
