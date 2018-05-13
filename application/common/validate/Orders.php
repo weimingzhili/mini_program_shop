@@ -31,7 +31,7 @@ class Orders extends BaseValidate
      */
     protected $message = [
         // 下单
-        'orders.checkOrder' => 'Orders Data Invalid',
+        'order.checkOrder' => 'Orders Data Invalid',
     ];
 
     /**
@@ -41,7 +41,7 @@ class Orders extends BaseValidate
      */
     protected $scene = [
         // 下单
-        'create' => ['orders', 'shipping_address_id'],
+        'create' => ['order', 'shipping_address_id'],
         // 列表
         'index' => ['page', 'pageSize'],
         // 详情

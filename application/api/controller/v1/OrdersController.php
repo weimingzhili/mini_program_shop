@@ -41,7 +41,7 @@ class OrdersController extends Base
     {
         // 获取参数
         $param = [];
-        $param['orders'] = $request->param('orders/a');
+        $param['order'] = $request->param('order/a');
         $param['shipping_address_id'] = $request->param('shipping_address_id');
 
         // 校验参数
@@ -56,9 +56,15 @@ class OrdersController extends Base
 
         // 创建订单
         $ordersService = new OrdersService();
-        $order = $ordersService->order($user_id, $param['shipping_address_id'], $param['orders']);
+        $order = $ordersService->order($user_id, $param['shipping_address_id'], $param['order']);
 
-        return $this->restResponse($order);
+        $apiConfig = Config::get('api');
+        return $this->restResponse(
+            $order,
+            $apiConfig['response_code']['common_success'],
+            $apiConfig['response_message']['common_success'],
+            $apiConfig['http_code']['create_success']
+        );
     }
 
     /**

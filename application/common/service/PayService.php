@@ -69,6 +69,10 @@ class PayService extends BaseService
 
         // 统一下单
         $unifiedOrder = $this->createUnifiedOrder($openid);
+        if ($unifiedOrder['return_code'] == 'FAIL')
+        {
+            throw new Exception('Unified Order Created Failed');
+        }
 
         // 保存 prepay_id
         $this->savePrepayId($unifiedOrder['prepay_id']);
