@@ -44,7 +44,8 @@ class ShippingAddressController extends Base
         $param = $request->only([
             'consignee_name', 'consignee_phone', 'province_name',
             'province_code', 'city_name', 'city_code', 'area_name',
-            'area_code', 'street_name', 'street_code', 'detailed_address'
+            'area_code', 'street_name', 'street_code', 'detailed_address',
+            'address_type'
         ]);
 
         // 校验参数
@@ -74,7 +75,8 @@ class ShippingAddressController extends Base
             $shippingAddress,
             $config['response_code']['common_success'],
             $config['response_message']['common_success'],
-            $config['http_code']['create_success']);
+            $config['http_code']['create_success']
+        );
     }
 
     /**
@@ -124,8 +126,10 @@ class ShippingAddressController extends Base
 
         $config = Config::get('api');
         return $this->restResponse(
-            $result, $config['response_code']['common_success'],
+            $result,
+            $config['response_code']['common_success'],
             $config['response_message']['common_success'],
-            $config['http_code']['update_success']);
+            $config['http_code']['update_success']
+        );
     }
 }

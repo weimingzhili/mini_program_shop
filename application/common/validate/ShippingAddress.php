@@ -17,16 +17,17 @@ class ShippingAddress extends BaseValidate
         // table field
         'id' => 'require|positiveInteger',
         'consignee_name' => 'require|max:60',
-        'consignee_phone' => 'require|mobile',
+        'consignee_phone' => 'require',
         'province_name' => 'require|max:60',
-        'province_code' => 'require|max:10',
+        'province_code' => 'max:10',
         'city_name' => 'require|max:60',
-        'city_code' => 'require|max:10',
+        'city_code' => 'max:10',
         'area_name' => 'require|max:60',
-        'area_code' => 'require|max:10',
+        'area_code' => 'max:10',
         'street_name' => 'max:60',
         'street_code' => 'max:10',
         'detailed_address' => 'require|max:255',
+        'address_type' => 'positiveInteger',
     ];
 
     /**
@@ -40,6 +41,7 @@ class ShippingAddress extends BaseValidate
             'consignee_name', 'consignee_phone', 'province_name',
             'province_code', 'city_name', 'city_code', 'area_name',
             'area_code', 'street_name', 'street_code', 'detailed_address',
+            'address_type'
         ],
         // 更新
         'update' => [

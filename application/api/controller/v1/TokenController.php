@@ -42,7 +42,7 @@ class TokenController extends Base
         $tokenService = new TokenService();
         $token = $tokenService->getTokenByCode($param['code']);
 
-        return $this->restResponse($token);
+        return $this->restResponse(['token' => $token]);
     }
 
     /**
