@@ -25,7 +25,7 @@ class TokenException extends BaseException
 
         // 加载配置
         $config         = Config::get('api');
-        $this->httpCode = $config['http_code']['token_error'];
+        $this->httpCode = $config['http_code']['token_common_error'];
         $this->message  = $message ? : $config['response_message']['token_common_error'];
         $this->state = $code ? : $config['response_code']['token_common_error'];
     }

@@ -4,7 +4,9 @@ namespace app\api\controller\v1;
 
 use app\common\exception\NotFoundException;
 use app\common\exception\ParameterException;
+use app\common\exception\TokenException;
 use app\common\model\ShippingAddress as ShippingAddressModel;
+use app\common\model\ShippingAddress;
 use app\common\model\User;
 use app\common\service\TokenService;
 use think\Config;
@@ -23,19 +25,47 @@ class ShippingAddressController extends Base
      * @var array
      */
     protected $beforeActionList = [
-        'checkUserScope' => ['only' => ['create', 'update']],
+        'checkUserScope' => ['only' => ['index', 'create', 'update']],
     ];
+
+    /**
+     * 列表
+     *
+     * @url /shippingAddress 访问 url
+     * @http get 请求方式
+     * @return \think\response\Json
+     * @throws NotFoundException
+     * @throws TokenException
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function index()
+    {
+        // 获取用户 id
+        $user_id = TokenService::getSessionUserId();
+        if (empty($user_id))
+        {
+            throw new TokenException();
+        }
+
+        // 获取
+        $shippingAddresses = ShippingAddress::getByUserId($user_id);
+
+        return $this->restResponse($shippingAddresses);
+    }
 
     /**
      * 创建收货地址
      *
      * @url /shippingAddresses 访问 url
      * @http post 请求方式
-     * @param Request $request Request 实例
+     * @param Request $request 实例
      * @return \think\response\Json
      * @throws Exception
      * @throws NotFoundException
      * @throws ParameterException
+     * @throws TokenException
      * @throws \think\exception\DbException
      */
     public function create(Request $request)
@@ -55,24 +85,24 @@ class ShippingAddressController extends Base
             throw new ParameterException($checkRet);
         }
 
-        // 获取用户
+        // 获取用户 id
         $user_id = TokenService::getSessionUserId();
-        $user = User::get($user_id);
-        if (empty($user))
+        if (empty($user_id))
         {
-            throw new NotFoundException('User Not Found');
+            throw new TokenException();
         }
 
         // 保存
-        $shippingAddress = $user->shippingAddresses()->save($param);
-        if ($shippingAddress === false)
+        $shippingAddressModel = new ShippingAddress();
+        $result = $shippingAddressModel->saveByUserId($user_id, $param);
+        if ($result === false)
         {
             throw new Exception('Shipping Address Created Failed');
         }
 
         $config = Config::get('api');
         return $this->restResponse(
-            $shippingAddress,
+            $result,
             $config['response_code']['common_success'],
             $config['response_message']['common_success'],
             $config['http_code']['create_success']

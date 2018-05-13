@@ -21,7 +21,7 @@ return [
         // 客户端通用错误
         'client_common_error' => 400,
         // token 错误
-        'token_error' => 401,
+        'token_common_error' => 401,
         // 拒绝访问
         'forbidden' => 403,
         // 资源不存在

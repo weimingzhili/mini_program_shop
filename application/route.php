@@ -42,6 +42,8 @@ Route::group(':version/token', function()
 // 收货地址
 Route::group(':version/shippingAddresses', function()
 {
+    // 获取
+    Route::get('/', 'api/:version.ShippingAddress/index');
     // 创建
     Route::post('/', 'api/:version.ShippingAddress/create');
     // 更新

@@ -18,6 +18,50 @@ class ShippingAddress extends BaseModel
     protected $hidden = ['banner', 'delete_time'];
 
     /**
+     * 根据用户 id 获取单条记录
+     *
+     * @param int $user_id 用户 id
+     * @return array|false|\PDOStatement|string|\think\Model
+     * @throws NotFoundException
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public static function getByUserId($user_id)
+    {
+        // 查询用户
+        $user = User::get($user_id);
+        if (empty($user))
+        {
+            throw new NotFoundException('User Not Found');
+        }
+
+        return $user->shippingAddresses()->find();
+    }
+
+    /**
+     * 保存
+     *
+     * @param int $user_id 用户 id
+     * @param array $data 收货地址数据
+     * @return false|\think\Model
+     * @throws NotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function saveByUserId($user_id, array $data)
+    {
+        // 查询用户
+        $user = User::get($user_id);
+        if (empty($user))
+        {
+            throw new NotFoundException('User Not Found');
+        }
+
+        // 保存
+        return $user->shippingAddresses()->save($data);
+    }
+
+    /**
      * 根据 id 和用户 id 更新数据
      *
      * @param int $id 收货地址id
