@@ -60,4 +60,19 @@ class Orders extends BaseModel
             $query->with('ordersSnapshots')->where(['id' => $id]);
         });
     }
+
+    /**
+     * 获取分页列表
+     *
+     * @param int $page 页码
+     * @param int $pageSize 页面大小
+     * @return \think\Paginator
+     * @throws \think\exception\DbException
+     */
+    public static function getPaginates($page, $pageSize)
+    {
+        return self::order(['create_time' => 'desc'])
+            ->field(['id', 'orders_number', 'orders_goods_total', 'orders_total_price', 'orders_state', 'create_time'])
+            ->paginate($pageSize, true, ['page' => $page]);
+    }
 }

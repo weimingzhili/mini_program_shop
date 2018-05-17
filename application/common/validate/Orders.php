@@ -42,10 +42,12 @@ class Orders extends BaseValidate
     protected $scene = [
         // 下单
         'create' => ['order', 'shipping_address_id'],
-        // 列表
-        'index' => ['page', 'pageSize'],
+        // 用户订单列表
+        'userOrders' => ['page', 'pageSize'],
         // 详情
         'read' => ['id'],
+        // 列表
+        'index' => ['page', 'pageSize'],
     ];
 
     /**

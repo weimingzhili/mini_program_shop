@@ -21,8 +21,8 @@ class OrdersController extends Base
      * @var array
      */
     protected $beforeActionList = [
-        'checkOnlyUserScope' => ['only' => ['create', 'index']],
-        'checkUserScope' => ['only' => ['read']],
+        'checkOnlyUserScope' => ['only' => ['create', 'userOrders']],
+        'checkUserScope' => ['only' => ['read', 'index']],
     ];
 
     /**
@@ -68,7 +68,7 @@ class OrdersController extends Base
     }
 
     /**
-     * 列表
+     * 用户订单列表
      *
      * @url /orders 访问 url
      * @http get 请求方式
@@ -78,7 +78,7 @@ class OrdersController extends Base
      * @throws \app\common\exception\TokenException
      * @throws \think\exception\DbException
      */
-    public function index(Request $request)
+    public function userOrders(Request $request)
     {
         // 获取参数
         $param = [];
@@ -86,7 +86,7 @@ class OrdersController extends Base
         $param['pageSize'] = $request->param('pageSize', Config::get('paginate.list_rows'));
 
         // 验证参数
-        $checkRet = $this->validate($param, 'Orders.index');
+        $checkRet = $this->validate($param, 'Orders.userOrders');
         if ($checkRet !== true)
         {
             throw new ParameterException($checkRet);
@@ -145,5 +145,41 @@ class OrdersController extends Base
         }
 
         return $this->restResponse($order);
+    }
+
+    /**
+     * 列表
+     *
+     * @param Request $request Request 实例
+     * @return \think\response\Json
+     * @throws ParameterException
+     * @throws \think\exception\DbException
+     */
+    public function index(Request $request)
+    {
+        // 获取参数
+        $param = [];
+        $param['page'] = $request->param('page', 1);
+        $param['pageSize'] = $request->param('pageSize', Config::get('paginate.list_rows'));
+
+        // 校验参数
+        $checkRet = $this->validate($param, 'Orders.index');
+        if ($checkRet !== true)
+        {
+            throw new ParameterException($checkRet);
+        }
+
+        // 获取
+        $paginates = Orders::getPaginates($param['page'], $param['pageSize']);
+        $result = [
+            'current_page' => $paginates->getCurrentPage(),
+            'list' => []
+        ];
+        if (!$paginates->isEmpty())
+        {
+            $result['list'] = $paginates->toArray()['data'];
+        }
+
+        return $this->restResponse($result);
     }
 }

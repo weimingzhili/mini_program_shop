@@ -57,7 +57,9 @@ Route::group(':version/orders', function()
 {
     // 创建订单
     Route::post('/', 'api/:version.Orders/create');
-    // 订单列表
+    // 用户订单列表
+    Route::get('/userOrders', 'api/:version.Orders/userOrders');
+    // 列表
     Route::get('/', 'api/:version.Orders/index');
     // 详情
     Route::get('/:id', 'api/:version.Orders/read');
