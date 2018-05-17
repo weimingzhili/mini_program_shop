@@ -33,10 +33,12 @@ Route::resource(':version/categories', 'api/:version.Category', ['only' => ['ind
 // token
 Route::group(':version/token', function()
 {
-    // 生成
-    Route::post('/userTokens', 'api/:version.Token/create');
+    // 生成用户 token
+    Route::post('/userTokens', 'api/:version.Token/createUserToken');
+    // 生成管理员 token
+    Route::post('/adminTokens', 'api/:version.Token/createAdminToken');
     // 获取 token 状态
-    Route::get('/tokenStates', 'api/:version.Token/tokenStates');
+    Route::get('/tokenStates', 'api/:version.Token/userTokenStates');
 });
 
 // 收货地址

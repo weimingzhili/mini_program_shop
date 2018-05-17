@@ -47,6 +47,8 @@ return [
         'token_common_error' => 1100,
         // token 不能为空
         'token_cannot_be_empty' => 1101,
+        // 授权失败
+        'authorization_failed' => 1102,
         // 鉴权错误
         'forbidden' => 1200,
         // 服务器通用错误
@@ -91,6 +93,8 @@ return [
         'token_common_error' => 'Token Invalid',
         // token 不能为空
         'token_cannot_be_empty' => 'Token Cannot Be Empty',
+        // 授权失败
+        'authorization_failed' => 'Authorization Failed',
         // 拒绝访问
         'forbidden' => 'Forbidden',
         // 服务器通用错误信息

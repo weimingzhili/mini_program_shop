@@ -5,6 +5,7 @@ namespace app\common\service;
 use app\common\exception\ForbiddenException;
 use app\common\exception\TokenException;
 use app\common\library\WeChat;
+use app\common\model\ThirdApp;
 use app\common\model\User;
 use think\Cache;
 use think\Config;
@@ -51,6 +52,50 @@ class TokenService extends BaseService
             'weChatSession' => $result,
             'user_id' => $user->id,
             'scope' => Config::get('scope.role')['user'],
+        ], Config::get('cache.token_expires_in'));
+        if (!$cachedRet)
+        {
+            throw new Exception("Cache Failed. Parameter: " . var_export($cachedRet, true));
+        }
+
+        return $token;
+    }
+
+    // 获取管理员 token
+
+    /**
+     * 获取管理员 token
+     *
+     * @param $app_id
+     * @param $app_secret
+     * @return string
+     * @throws Exception
+     * @throws TokenException
+     * @throws \think\exception\DbException
+     */
+    public static function getAdminToken($app_id, $app_secret)
+    {
+        // 查询
+        $thirdAppRecord = ThirdApp::get(function ($query) use ($app_id, $app_secret)
+        {
+            $query->where(['app_id' => $app_id])->where(['app_secret' => $app_secret]);
+        });
+        if (empty($thirdAppRecord))
+        {
+            $apiConfig = Config::get('api');
+            throw new TokenException(
+                $apiConfig['response_message']['authorization_failed'],
+                $apiConfig['response_code']['authorization_failed']
+            );
+        }
+
+        // 生成 token
+        $token = self::generateToken();
+
+        // 写入缓存
+        $cachedRet = Cache::set($token, [
+            'admin_id' => $thirdAppRecord->id,
+            'scope' => $thirdAppRecord->scope,
         ], Config::get('cache.token_expires_in'));
         if (!$cachedRet)
         {

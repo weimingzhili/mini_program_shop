@@ -16,6 +16,8 @@ class Token extends BaseValidate
     protected $rule = [
         // table fields
         'code' => 'require',
+        'app_id' => 'require',
+        'app_secret' => 'require',
 
         // other fields
         'token' => 'require',
@@ -27,9 +29,11 @@ class Token extends BaseValidate
      * @var array
      */
     protected $scene = [
-        // 生成
-        'create' => ['code'],
+        // 生成用户 token
+        'createUserToken' => ['code'],
         // 获取 token 状态
-        'tokenStates' => ['token']
+        'userTokenStates' => ['token'],
+        // 生成管理员 token
+        'createAdminToken' => ['app_id', 'app_secret'],
     ];
 }
