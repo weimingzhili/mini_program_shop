@@ -1,6 +1,6 @@
 <?php
 
-namespace app\common\service;
+namespace app\common\logic;
 
 use app\common\exception\OrdersException;
 use app\common\exception\TokenException;
@@ -16,7 +16,7 @@ require_once "../extend/WxPay/WxPay.Api.php";
  * 支付
  * User: Wei Zeng
  */
-class PayService extends BaseService
+class PayLogic extends Logic
 {
     Use ToolTrait;
 
@@ -58,10 +58,10 @@ class PayService extends BaseService
         $this->checkOrder($orders_id);
 
         // 检测商品库存
-        (new OrdersService())->checkGoodsStockByOrdersId($orders_id);
+        (new OrdersLogic())->checkGoodsStockByOrdersId($orders_id);
 
         // 获取 openid
-        $openid = TokenService::getCachedSessionByToken('openid');
+        $openid = TokenLogic::getCachedSessionByToken('openid');
         if (empty($openid))
         {
             throw new TokenException();
@@ -106,7 +106,7 @@ class PayService extends BaseService
         }
 
         // 检测订单的所属是否匹配
-        if (!TokenService::checkUserMatches($this->order->user_id))
+        if (!TokenLogic::checkUserMatches($this->order->user_id))
         {
             $config = Config::get('api');
             throw new OrdersException(

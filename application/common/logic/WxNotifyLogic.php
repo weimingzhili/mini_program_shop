@@ -1,6 +1,6 @@
 <?php
 
-namespace app\common\service;
+namespace app\common\logic;
 
 use app\common\exception\OrdersException;
 use app\common\model\Orders;
@@ -17,7 +17,7 @@ require_once "../extend/WxPay/WxPay.Notify.php";
  * 微信支付通知处理
  * User: Wei Zeng
  */
-class WxNotifyService extends \WxPayNotify
+class WxNotifyLogic extends \WxPayNotify
 {
     /**
      * 回调处理
@@ -55,7 +55,7 @@ class WxNotifyService extends \WxPayNotify
                 try
                 {
                     // 检测库存量
-                    (new OrdersService())->checkGoodsStockByOrdersId($order->id);
+                    (new OrdersLogic())->checkGoodsStockByOrdersId($order->id);
                     // 更新订单
                     $this->updateOrderState($order->id, $orderState['paid']);
                 } catch(OrdersException $ordersException)

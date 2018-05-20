@@ -3,7 +3,7 @@
 namespace app\api\controller\v1;
 
 use app\common\exception\ParameterException;
-use app\common\service\TokenService;
+use app\common\logic\TokenLogic;
 use app\common\traits\ToolTrait;
 use think\Request;
 
@@ -39,8 +39,8 @@ class TokenController extends Base
         }
 
         // 获取
-        $tokenService = new TokenService();
-        $token = $tokenService->getTokenByCode($param['code']);
+        $tokenLogic = new TokenLogic();
+        $token = $tokenLogic->getTokenByCode($param['code']);
 
         return $this->restResponse(['token' => $token]);
     }
@@ -66,7 +66,7 @@ class TokenController extends Base
         }
 
         // 检查
-        $state = TokenService::checkToken($param['token']);
+        $state = TokenLogic::checkToken($param['token']);
 
         return $this->restResponse(['tokenState' => $state]);
     }
@@ -100,7 +100,7 @@ class TokenController extends Base
         }
 
         // 生成
-        $token = TokenService::getAdminToken($param['app_id'], $param['app_secret']);
+        $token = TokenLogic::getAdminToken($param['app_id'], $param['app_secret']);
 
         return $this->restResponse(['token' => $token]);
     }

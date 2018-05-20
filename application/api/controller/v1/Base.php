@@ -2,7 +2,7 @@
 
 namespace app\api\controller\v1;
 
-use app\common\service\TokenService;
+use app\common\logic\TokenLogic;
 use app\common\traits\ResponseTrait;
 use think\Controller;
 
@@ -23,7 +23,7 @@ class Base extends Controller
      */
     protected function checkOnlyUserScope()
     {
-        return TokenService::isOnlyUserScope();
+        return TokenLogic::isOnlyUserScope();
     }
 
     /**
@@ -35,6 +35,6 @@ class Base extends Controller
      */
     protected function checkUserScope()
     {
-        return TokenService::isUserScope();
+        return TokenLogic::isUserScope();
     }
 }

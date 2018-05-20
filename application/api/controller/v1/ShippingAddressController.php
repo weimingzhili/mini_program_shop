@@ -8,7 +8,7 @@ use app\common\exception\TokenException;
 use app\common\model\ShippingAddress as ShippingAddressModel;
 use app\common\model\ShippingAddress;
 use app\common\model\User;
-use app\common\service\TokenService;
+use app\common\logic\TokenLogic;
 use think\Config;
 use think\Exception;
 use think\Request;
@@ -43,7 +43,7 @@ class ShippingAddressController extends Base
     public function index()
     {
         // 获取用户 id
-        $user_id = TokenService::getSessionUserId();
+        $user_id = TokenLogic::getSessionUserId();
         if (empty($user_id))
         {
             throw new TokenException();
@@ -86,7 +86,7 @@ class ShippingAddressController extends Base
         }
 
         // 获取用户 id
-        $user_id = TokenService::getSessionUserId();
+        $user_id = TokenLogic::getSessionUserId();
         if (empty($user_id))
         {
             throw new TokenException();
@@ -139,7 +139,7 @@ class ShippingAddressController extends Base
         }
 
         // 获取用户
-        $user_id = TokenService::getSessionUserId();
+        $user_id = TokenLogic::getSessionUserId();
         $user = User::get($user_id);
         if (empty($user))
         {

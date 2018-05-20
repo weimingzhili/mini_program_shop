@@ -1,6 +1,6 @@
 <?php
 
-namespace app\common\service;
+namespace app\common\logic;
 
 use app\common\exception\OrdersException;
 use app\common\model\Goods;
@@ -15,7 +15,7 @@ use think\Log;
  * 订单
  * User: Wei Zeng
  */
-class OrdersService extends BaseService
+class OrdersLogic extends Logic
 {
     /**
      * 用户 id

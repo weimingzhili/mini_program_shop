@@ -1,6 +1,6 @@
 <?php
 
-namespace app\common\service;
+namespace app\common\logic;
 
 use app\common\exception\ForbiddenException;
 use app\common\exception\TokenException;
@@ -16,7 +16,7 @@ use think\Request;
  * token
  * User: Wei Zeng
  */
-class TokenService extends BaseService
+class TokenLogic extends Logic
 {
     /**
      * 根据 code 获取 token

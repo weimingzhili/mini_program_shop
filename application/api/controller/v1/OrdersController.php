@@ -4,8 +4,8 @@ namespace app\api\controller\v1;
 use app\common\exception\OrdersException;
 use app\common\exception\ParameterException;
 use app\common\model\Orders;
-use app\common\service\OrdersService;
-use app\common\service\TokenService;
+use app\common\logic\OrdersLogic;
+use app\common\logic\TokenLogic;
 use think\Config;
 use think\Request;
 
@@ -52,11 +52,11 @@ class OrdersController extends Base
         }
 
         // 获取 user_id
-        $user_id = TokenService::getCachedSessionByToken('user_id');
+        $user_id = TokenLogic::getCachedSessionByToken('user_id');
 
         // 创建订单
-        $ordersService = new OrdersService();
-        $order = $ordersService->order($user_id, $param['shipping_address_id'], $param['order']);
+        $ordersLogic = new OrdersLogic();
+        $order = $ordersLogic->order($user_id, $param['shipping_address_id'], $param['order']);
 
         $apiConfig = Config::get('api');
         return $this->restResponse(
@@ -93,7 +93,7 @@ class OrdersController extends Base
         }
 
         // 获取用户 id
-        $user_id = TokenService::getSessionUserId();
+        $user_id = TokenLogic::getSessionUserId();
 
         // 获取分页数据
         $paginates = Orders::getPaginateByUserId($user_id, $param['page'], $param['pageSize']);

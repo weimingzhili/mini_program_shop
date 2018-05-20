@@ -2,8 +2,8 @@
 
 namespace app\api\controller\v1;
 use app\common\exception\ParameterException;
-use app\common\service\PayService;
-use app\common\service\WxNotifyService;
+use app\common\logic\PayLogic;
+use app\common\logic\WxNotifyLogic;
 use think\Request;
 
 /**
@@ -49,8 +49,8 @@ class PayController extends Base
         }
 
         // 统一下单
-        $payService = new PayService();
-        $unifiedOrder = $payService->pay($param['orders_id']);
+        $payLogic = new PayLogic();
+        $unifiedOrder = $payLogic->pay($param['orders_id']);
 
         return $this->restResponse($unifiedOrder);
     }
@@ -60,8 +60,6 @@ class PayController extends Base
      */
     public function notifies()
     {
-        $wxNotifyService = new WxNotifyService();
-
-        $wxNotifyService->Handle();
+        (new WxNotifyLogic())->Handle();
     }
 }

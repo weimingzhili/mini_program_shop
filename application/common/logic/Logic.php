@@ -1,6 +1,6 @@
 <?php
 
-namespace app\common\service;
+namespace app\common\logic;
 
 use think\Config;
 use think\Request;
@@ -10,7 +10,7 @@ use app\common\traits\ToolTrait;
  * 基类
  * User: Wei Zeng
  */
-class BaseService
+class Logic
 {
     use ToolTrait;
 
