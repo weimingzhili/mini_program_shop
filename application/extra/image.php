@@ -5,5 +5,5 @@
  * User: Wei Zeng
  */
 return [
-    'image_prefix' => 'http://dev.imooc-tpshop.com/static/images',
+    'image_prefix' => 'http://dev.mini-program-shop.com/static/images',
 ];
